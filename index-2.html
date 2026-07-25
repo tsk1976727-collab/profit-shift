@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10382d">
+<title>PROFIT SHIFT Ver.19</title>
+<style>
+:root{--bg:#f3f4ef;--surface:#fff;--ink:#14261f;--muted:#718078;--brand:#123c30;--brand2:#1c5946;--soft:#e8f0eb;--gold:#a67c3f;--line:#dde3df;--good:#17704d;--bad:#a54b45;--shadow:0 10px 30px rgba(18,60,48,.08);--r:22px}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;color:var(--ink);background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}.top{background:linear-gradient(150deg,#0d3329,#174d3d 72%,#1a5b47);color:white;padding:calc(20px + env(safe-area-inset-top)) 18px 24px;border-radius:0 0 30px 30px}.topbar{max-width:920px;margin:auto;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.brand small{display:block;letter-spacing:.16em;font-size:10px;opacity:.66;font-weight:800}.brand h1{margin:5px 0 2px;font-size:25px;letter-spacing:.01em}.brand p{margin:0;font-size:12px;opacity:.78}.reset{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);color:#fff;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800}.shell{max-width:920px;margin:auto;padding:0 14px 38px}.context{margin-top:-12px;background:white;border-radius:18px;padding:10px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;position:relative;z-index:3}.sel label{font-size:10px;font-weight:800;color:var(--muted);display:block;margin:0 0 4px 4px}.sel select{width:100%;border:0;background:#f4f6f3;border-radius:12px;padding:10px 8px;font-weight:800;color:var(--ink)}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.tab{border:0;padding:11px 4px;border-radius:13px;background:#e5e9e5;color:#65746d;font-size:12px;font-weight:900}.tab.active{background:var(--brand);color:white;box-shadow:0 8px 18px rgba(18,60,48,.16)}.view{display:none}.view.active{display:block}.hero{background:linear-gradient(145deg,#123c30,#1c5a46);color:white;border-radius:26px;padding:20px;box-shadow:0 16px 36px rgba(18,60,48,.18);margin-bottom:12px}.hero-label{font-size:12px;opacity:.76;font-weight:800}.hero-value{font-size:36px;font-weight:950;letter-spacing:-.03em;margin:5px 0 2px}.hero-rate{font-size:12px;opacity:.78}.hero-badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 10px;font-size:11px;font-weight:850}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.metric{background:white;border-radius:17px;padding:13px 12px;box-shadow:var(--shadow)}.metric span{display:block;color:var(--muted);font-size:10px;font-weight:800}.metric strong{display:block;margin-top:6px;font-size:17px;letter-spacing:-.02em}.metric small{display:block;color:var(--muted);font-size:9px;margin-top:3px}.section{background:white;border-radius:22px;padding:17px;margin-bottom:11px;box-shadow:var(--shadow);border:1px solid rgba(18,60,48,.04)}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.step{display:block;color:var(--gold);font-size:10px;letter-spacing:.1em;font-weight:950;margin-bottom:2px}.section h2{margin:0;font-size:19px}.why{border:0;background:var(--soft);color:var(--brand);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:900}.mode-note{background:#eef3ef;border-radius:14px;padding:11px 12px;margin-bottom:12px;font-size:12px;line-height:1.55;color:#56675f}.mode-note strong{color:var(--brand)}.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.field{background:#f6f7f4;border-radius:15px;padding:10px 11px}.field label{display:block;font-size:10px;color:var(--muted);font-weight:850;margin-bottom:5px}.field input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size:18px;font-weight:900;min-width:0}.field small{display:block;color:var(--muted);font-size:9px;margin-top:3px}.four{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:11px}.mini{background:#f6f7f4;border-radius:14px;padding:11px}.mini span{font-size:10px;color:var(--muted);font-weight:800;display:block}.mini strong{display:block;margin-top:5px;font-size:16px}.coach{margin:10px 0 0;background:#fbf7ee;border-left:4px solid var(--gold);border-radius:12px;padding:11px 12px;font-size:12px;line-height:1.6;color:#526159}.pl{display:grid;gap:0}.plrow{display:flex;justify-content:space-between;gap:14px;padding:10px 2px;border-bottom:1px solid #edf0ed;font-size:13px}.plval{display:flex;align-items:baseline;justify-content:flex-end;gap:8px}.plpct{display:inline-block;min-width:48px;text-align:right;color:var(--muted);font-size:10px;font-weight:850}.plrow.bold .plpct,.plrow.profit .plpct{color:inherit;opacity:.72}.plrow.bold{font-weight:950}.plrow.profit{background:var(--soft);border:0;border-radius:14px;padding:13px 12px;margin-top:7px;font-size:16px}.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.kpi{background:#f6f7f4;border-radius:14px;padding:11px}.kpi span{display:block;font-size:10px;color:var(--muted);font-weight:800}.kpi strong{display:block;margin-top:5px;font-size:16px}.intro{font-size:12px;line-height:1.65;color:var(--muted);margin:0 0 13px}.annual-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.annual-card{background:#f6f7f4;border-radius:15px;padding:12px}.annual-card span{display:block;font-size:10px;color:var(--muted);font-weight:800}.annual-card strong{display:block;font-size:16px;margin-top:6px}.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:760px;background:#fff}th,td{font-size:11px;padding:10px 8px;border-bottom:1px solid #edf0ed;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}thead th{background:#f3f5f2;color:#627169}.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}.compare-card{background:#f6f7f4;border-radius:17px;padding:13px}.compare-card h3{margin:0 0 8px;font-size:14px}.cline{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #e4e8e4;font-size:12px}.good{color:var(--good)}.bad{color:var(--bad)}.sim-base,.sim-out{background:var(--soft);border-radius:16px;padding:13px;display:flex;justify-content:space-between;align-items:center;margin:10px 0}.sim-base span,.sim-out span{font-size:11px;color:var(--muted);font-weight:800}.sim-base strong,.sim-out strong{font-size:20px}.sliders{display:grid;gap:14px}.sliders label{font-size:12px;font-weight:850}.sliders input{width:100%;margin-top:8px;accent-color:var(--brand)}.impacts{display:grid;gap:7px;margin-top:10px}.impact{display:flex;justify-content:space-between;padding:10px 11px;border-radius:12px;background:#f6f7f4;font-size:12px}.empty-note{padding:18px;text-align:center;color:var(--muted);font-size:12px}.note{margin-top:10px}.note label{display:block;font-size:10px;color:var(--muted);font-weight:850;margin:0 0 6px 3px}.note textarea{width:100%;min-height:78px;resize:vertical;border:0;outline:0;background:#f6f7f4;border-radius:15px;padding:12px;color:var(--ink);font:inherit;font-size:13px;line-height:1.55}.subhead{grid-column:1/-1;font-size:11px;font-weight:950;color:var(--brand);padding:8px 2px 0;border-top:1px solid var(--line);margin-top:2px}.fixed-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.fixed-chip{display:inline-flex;align-items:center;gap:5px;background:#eaf1ed;color:var(--brand);border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900}.fixed-action{border:0;background:var(--brand);color:#fff;border-radius:999px;padding:8px 11px;font-size:10px;font-weight:900}.fixed-reset{border:1px solid var(--line);background:#fff;color:var(--brand);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900}.fixed-field{position:relative}.fixed-field::after{content:"固定";position:absolute;right:10px;top:9px;font-size:8px;font-weight:950;color:var(--brand);background:#eaf1ed;border-radius:999px;padding:3px 6px}.fixed-field.override::after{content:"月別変更";color:#8a5a1d;background:#fbf0de}.fixed-summary{background:#eef3ef;border-radius:14px;padding:10px 11px;margin:10px 0 0;font-size:11px;line-height:1.55;color:#586860}.fixed-grid{display:grid;grid-template-columns:1fr;gap:9px;margin:12px 0}.fixed-grid label{display:block;font-size:11px;font-weight:850;color:var(--muted)}.fixed-grid input{width:100%;margin-top:5px;border:0;background:#f4f6f3;border-radius:12px;padding:11px;font-size:18px;font-weight:900;color:var(--ink)}dialog{border:0;border-radius:20px;padding:19px;max-width:360px;width:calc(100% - 32px);box-shadow:0 20px 60px rgba(0,0,0,.25)}dialog::backdrop{background:rgba(4,20,15,.48)}dialog p{font-size:13px;line-height:1.75;margin:0 0 14px}dialog button{width:100%;border:0;background:var(--brand);color:white;border-radius:13px;padding:11px;font-weight:900}
+
+.variance-section{background:white;border-radius:22px;padding:17px;margin-bottom:11px;box-shadow:var(--shadow);border:1px solid rgba(18,60,48,.04)}
+.variance-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.variance-head h2{margin:0;font-size:19px}
+.variance-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.variance-card{border-radius:16px;padding:12px;background:#f6f7f4;border:1px solid transparent}
+.variance-card span{display:block;font-size:10px;color:var(--muted);font-weight:850}
+.variance-card strong{display:block;font-size:18px;margin-top:5px;letter-spacing:-.02em}
+.variance-card small{display:block;font-size:9px;color:var(--muted);margin-top:4px}
+.variance-card.good-card{background:#edf7f1;border-color:#d7eadf}
+.variance-card.bad-card{background:#fbefef;border-color:#efd8d8}
+.variance-card.neutral-card{background:#f6f7f4}
+.variance-card.good-card strong{color:var(--good)}
+.variance-card.bad-card strong{color:var(--bad)}
+.variance-summary{margin-top:10px;border-radius:13px;padding:10px 11px;background:#f3f5f2;font-size:11px;line-height:1.55;color:#586860}
+
+@media(max-width:560px){.top{padding-left:16px;padding-right:16px}.brand h1{font-size:23px}.context{grid-template-columns:1fr 1fr}.context .sel:last-child{grid-column:1/-1}.tabs{position:sticky;top:6px;z-index:10;background:rgba(243,244,239,.93);backdrop-filter:blur(10px);padding:5px;border-radius:16px}.hero-value{font-size:32px}.metrics{grid-template-columns:repeat(3,1fr)}.metric{padding:12px 9px}.metric strong{font-size:15px}.fields{grid-template-columns:1fr}.compare{grid-template-columns:1fr}.annual-hero{grid-template-columns:1fr 1fr}.annual-hero .annual-card:last-child{grid-column:1/-1}.section{padding:15px}.reset{font-size:10px;padding:7px 9px}}
+
+/* Ver.9 visual refresh */
+:root{
+  --bg:#f5f6f3;
+  --surface:#ffffff;
+  --ink:#14241f;
+  --muted:#7c8b84;
+  --brand:#0d3f31;
+  --brand2:#145744;
+  --soft:#eaf0ec;
+  --gold:#b28a4a;
+  --line:#e4e9e5;
+  --good:#0f7a5a;
+  --bad:#b45252;
+  --shadow:0 14px 40px rgba(18,48,38,.08);
+  --shadow-soft:0 8px 26px rgba(18,48,38,.055);
+  --r:24px;
+}
+body{
+  background:
+    radial-gradient(circle at 20% -10%, rgba(178,138,74,.08), transparent 32%),
+    linear-gradient(180deg,#f7f8f6 0%,#f3f5f2 100%);
+  color:var(--ink);
+}
+.top{
+  background:
+    radial-gradient(circle at 92% 10%, rgba(255,255,255,.10), transparent 22%),
+    linear-gradient(155deg,#0a3529 0%,#124b3a 58%,#1a5d49 100%);
+  border-radius:0 0 34px 34px;
+  padding-bottom:34px;
+  box-shadow:0 18px 36px rgba(10,53,41,.18);
+}
+.top .brand small{
+  opacity:.72;
+  letter-spacing:.22em;
+  font-size:10px;
+}
+.top .brand h1{
+  font-size:30px;
+  line-height:1.03;
+  letter-spacing:-.025em;
+}
+.top .brand p{
+  opacity:.78;
+  max-width:310px;
+  font-size:12px;
+  line-height:1.6;
+}
+.context{
+  margin-top:-18px;
+  border:1px solid rgba(255,255,255,.78);
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px);
+  box-shadow:0 18px 40px rgba(18,48,38,.10);
+}
+.sel label{font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.sel select{
+  background:#f4f6f3;
+  border:1px solid #edf0ed;
+  border-radius:17px;
+  padding:14px 13px;
+  font-weight:900;
+  color:#173b30;
+}
+.tabs{
+  position:sticky;
+  top:0;
+  z-index:20;
+  margin:10px auto 14px;
+  padding:6px;
+  border-radius:20px;
+  background:rgba(238,242,239,.93);
+  backdrop-filter:blur(10px);
+  box-shadow:0 6px 20px rgba(20,60,48,.07);
+}
+.tabs button{
+  border-radius:15px;
+  min-height:48px;
+  transition:.2s ease;
+  font-weight:900;
+}
+.tabs button.active{
+  background:linear-gradient(145deg,#0e4737,#155843);
+  box-shadow:0 8px 18px rgba(14,71,55,.22);
+}
+.hero{
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 88% 20%,rgba(255,255,255,.08),transparent 25%),
+    linear-gradient(145deg,#124c3a,#0c3b2f);
+  box-shadow:0 18px 42px rgba(15,62,48,.18);
+  padding:24px;
+}
+.hero .eyebrow{letter-spacing:.16em;font-size:10px;opacity:.72}
+.hero strong{font-size:42px;letter-spacing:-.035em}
+.hero small{opacity:.72}
+.hero .pill{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.10);
+}
+.metrics{gap:10px}
+.metric{
+  border:1px solid rgba(21,70,55,.05);
+  box-shadow:var(--shadow-soft);
+  padding:16px;
+  border-radius:22px;
+}
+.metric span{font-size:10px;letter-spacing:.03em}
+.metric strong{font-size:22px;letter-spacing:-.025em}
+.metric small{font-size:9px}
+.section{
+  border-radius:28px;
+  box-shadow:var(--shadow-soft);
+  border:1px solid rgba(19,58,46,.045);
+  padding:20px;
+}
+.section-head h2{
+  font-size:22px;
+  letter-spacing:-.02em;
+}
+.step{
+  color:var(--gold);
+  letter-spacing:.16em;
+  font-size:9px;
+}
+.mode-note{
+  border-radius:16px;
+  background:linear-gradient(180deg,#eef4f0,#e8efeb);
+  border:1px solid #e0e8e2;
+}
+.field{
+  border-radius:18px;
+  background:#f7f8f6;
+  border:1px solid #edf0ed;
+  box-shadow:none;
+}
+.field input{
+  font-size:22px;
+  letter-spacing:-.025em;
+}
+.fixed-action,.why{
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:900;
+}
+.plbox{
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid #e8ece8;
+  background:#fff;
+}
+.plrow{
+  padding:12px 14px;
+  background:#fff;
+}
+.plrow:nth-child(even){background:#fbfcfb}
+.plrow.bold{
+  background:#f1f5f2;
+}
+.plrow.profit{
+  background:linear-gradient(90deg,#eaf4ef,#f4f8f5);
+  border-top:1px solid #dce8e1;
+}
+.plrow.profit strong{
+  color:#0d6a4e;
+  font-size:18px;
+}
+.plpct{
+  background:#eef3ef;
+  border-radius:999px;
+  padding:3px 8px;
+  min-width:54px;
+}
+.variance-section{
+  border-radius:28px;
+  box-shadow:var(--shadow-soft);
+}
+.variance-grid{gap:10px}
+.variance-card{
+  min-height:112px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-radius:20px;
+}
+.variance-card strong{font-size:20px}
+.variance-summary{
+  background:#f6f7f5;
+  border:1px solid #ecefec;
+  border-radius:16px;
+}
+.table-wrap{
+  border-radius:20px;
+  overflow:auto;
+  border:1px solid #e7ebe7;
+  background:#fff;
+}
+table thead th{
+  background:#eef3ef;
+  color:#456158;
+  font-size:10px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+table td{padding:12px 10px}
+.impact{
+  border-radius:18px;
+  background:#fafbfa;
+  border:1px solid #edf0ed;
+  padding:13px 16px;
+}
+.coach{
+  border-left:4px solid var(--gold);
+  background:linear-gradient(90deg,#faf5ea,#fbfaf6);
+  border-radius:0 18px 18px 0;
+  padding:14px 16px;
+  line-height:1.65;
+}
+#trendChart{
+  background:#fafbfa;
+  border:1px solid #edf0ed;
+  border-radius:20px;
+  padding:8px 10px 0;
+}
+dialog{
+  border:0;
+  border-radius:26px;
+  box-shadow:0 30px 80px rgba(0,0,0,.22);
+  padding:22px;
+}
+dialog::backdrop{background:rgba(6,24,18,.45);backdrop-filter:blur(3px)}
+@media(max-width:560px){
+  .top .brand h1{font-size:28px}
+  .hero strong{font-size:38px}
+  .section{padding:18px}
+  .variance-card{min-height:104px}
+}
+
+
+/* Ver.10 Navy × Ivory × Gold */
+:root{
+  --bg:#f4f0e7;
+  --surface:#fffdf8;
+  --ink:#17233a;
+  --muted:#7d8290;
+  --brand:#14233f;
+  --brand2:#20375f;
+  --soft:#eef0f4;
+  --gold:#b38a46;
+  --line:#e7e1d6;
+  --good:#167257;
+  --bad:#b64d52;
+  --shadow:0 15px 42px rgba(24,35,58,.09);
+  --shadow-soft:0 8px 28px rgba(24,35,58,.06);
+}
+body{
+  background:
+    radial-gradient(circle at 15% -8%,rgba(179,138,70,.11),transparent 30%),
+    linear-gradient(180deg,#f8f5ee 0%,#f2eee5 100%);
+  color:var(--ink);
+}
+.top{
+  background:
+    radial-gradient(circle at 88% 10%,rgba(209,177,115,.18),transparent 24%),
+    linear-gradient(150deg,#101d35 0%,#172a4b 55%,#213a63 100%);
+  box-shadow:0 20px 42px rgba(20,35,63,.22);
+}
+.context{
+  border-color:rgba(255,253,248,.92);
+  background:rgba(255,253,248,.96);
+  box-shadow:0 18px 40px rgba(28,39,62,.11);
+}
+.sel select{background:#f5f2eb;border-color:#ebe5d9;color:#1b2a46}
+.tabs{background:rgba(237,234,226,.94);box-shadow:0 6px 22px rgba(24,35,58,.08)}
+.tabs button.active{
+  background:linear-gradient(145deg,#142540,#203a64);
+  box-shadow:0 8px 18px rgba(20,37,64,.22);
+}
+.hero{
+  background:
+    radial-gradient(circle at 88% 18%,rgba(213,180,113,.18),transparent 26%),
+    linear-gradient(145deg,#162947,#0f1e37);
+  box-shadow:0 18px 44px rgba(18,32,57,.22);
+}
+.metric,.section,.variance-section{background:#fffdf9;border-color:rgba(36,48,71,.055)}
+.step{color:#aa7f3b}
+.mode-note{background:linear-gradient(180deg,#f3f0e9,#eee9df);border-color:#e6dfd2}
+.field{background:#faf8f3;border-color:#eee8dc}
+.fixed-action,.why{background:#eee7d9;color:#6e5326}
+.plbox{border-color:#e8e1d5;background:#fffdf9}
+.plrow{background:#fffdf9;border-bottom-color:#eee9df}
+.plrow:nth-child(even){background:#fcfaf5}
+.plrow.bold{background:#f3f0e9}
+.plrow.profit{
+  background:linear-gradient(90deg,#edf4f0,#f8f7f1);
+  border-top-color:#dde8e1;
+}
+.plrow.profit strong{color:#126b51}
+.plpct{background:#f0ece3;color:#6f7280}
+.variance-summary,.impact,#trendChart{background:#faf8f3;border-color:#ece6da}
+.table-wrap{border-color:#e8e1d5;background:#fffdf9}
+table thead th{background:#eeeae2;color:#596176}
+.coach{
+  border-left-color:#b38a46;
+  background:linear-gradient(90deg,#faf3e5,#fffaf0);
+}
+dialog{background:#fffdf8;color:#17233a}
+
+
+/* Ver.11 playful accent system */
+:root{
+  --sales:#2aa7a1;
+  --food:#e88b4a;
+  --labor:#4f7fc7;
+  --profit:#c39a43;
+  --plan:#8a6cc9;
+  --good:#167257;
+  --bad:#b64d52;
+}
+.metric:nth-child(1){
+  background:linear-gradient(180deg,#f3fbfa,#fffdf9);
+  border-top:4px solid var(--sales);
+}
+.metric:nth-child(2){
+  background:linear-gradient(180deg,#f7f5fc,#fffdf9);
+  border-top:4px solid var(--plan);
+}
+.metric:nth-child(3){
+  background:linear-gradient(180deg,#f3f7fd,#fffdf9);
+  border-top:4px solid var(--labor);
+}
+.metric:nth-child(1) strong{color:#178981}
+.metric:nth-child(2) strong{color:#7257b8}
+.metric:nth-child(3) strong{color:#3f6fae}
+
+.hero{
+  background:
+    radial-gradient(circle at 82% 14%,rgba(42,167,161,.18),transparent 20%),
+    radial-gradient(circle at 96% 36%,rgba(227,139,74,.14),transparent 20%),
+    linear-gradient(145deg,#172947,#101e36);
+}
+.hero strong{color:#fff8e9}
+.hero .pill:nth-child(1){border-color:rgba(42,167,161,.35)}
+.hero .pill:nth-child(2){border-color:rgba(195,154,67,.35)}
+
+.tabs button:nth-child(1).active{background:linear-gradient(145deg,#16304c,#1f4a69)}
+.tabs button:nth-child(2).active{background:linear-gradient(145deg,#6f58a8,#8d72c6)}
+.tabs button:nth-child(3).active{background:linear-gradient(145deg,#2b7f7a,#36a7a0)}
+.tabs button:nth-child(4).active{background:linear-gradient(145deg,#9a7432,#c09a4c)}
+
+.step{color:var(--profit)}
+#annual .step{color:var(--plan)}
+#compare .step{color:var(--sales)}
+#sim .step{color:var(--food)}
+
+.plrow:nth-child(2){border-left:4px solid var(--food)}
+.plrow:nth-child(4){border-left:4px solid var(--labor)}
+.plrow.profit{border-left:4px solid var(--profit)}
+.plrow:nth-child(1){border-left:4px solid var(--sales)}
+
+.plrow:nth-child(2) .plpct{background:#fff0e5;color:#ad642f}
+.plrow:nth-child(4) .plpct{background:#edf3fb;color:#416eaa}
+.plrow.profit .plpct{background:#f6eddc;color:#92702f}
+.plrow:nth-child(1) .plpct{background:#e9f8f6;color:#1d807a}
+
+.variance-card:nth-child(1){border-top:4px solid var(--sales)}
+.variance-card:nth-child(2){border-top:4px solid var(--food)}
+.variance-card:nth-child(3){border-top:4px solid var(--labor)}
+.variance-card:nth-child(4){border-top:4px solid #6f8798}
+.variance-card:nth-child(5){border-top:4px solid var(--profit)}
+.variance-card:nth-child(6){border-top:4px solid var(--plan)}
+
+#annual .section{
+  background:
+    radial-gradient(circle at 96% 0%,rgba(138,108,201,.08),transparent 22%),
+    #fffdf9;
+}
+#compare .section{
+  background:
+    radial-gradient(circle at 96% 0%,rgba(42,167,161,.08),transparent 22%),
+    #fffdf9;
+}
+#sim .section{
+  background:
+    radial-gradient(circle at 96% 0%,rgba(232,139,74,.08),transparent 22%),
+    #fffdf9;
+}
+#trendChart{
+  background:
+    linear-gradient(180deg,rgba(42,167,161,.05),transparent 75%),
+    #faf8f3;
+}
+.coach{
+  border-left-color:var(--plan);
+  background:linear-gradient(90deg,#f6f0ff,#fffaf0);
+}
+.fixed-action{
+  background:linear-gradient(145deg,#efe6d5,#e5d6bc);
+}
+.impact:nth-child(1){border-left:4px solid var(--sales)}
+.impact:nth-child(2){border-left:4px solid var(--food)}
+.impact:nth-child(3){border-left:4px solid var(--labor)}
+.impact:nth-child(4){border-left:4px solid var(--plan)}
+.impact:nth-child(5){border-left:4px solid #738493}
+
+#journeyStatus{
+  background:
+    linear-gradient(90deg,rgba(138,108,201,.10),rgba(42,167,161,.07)),
+    #f7f5ef;
+}
+
+
+.trend-actual-cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.trend-actual-card{
+  background:#fffdf9;
+  border:1px solid #ebe5d9;
+  border-radius:17px;
+  padding:11px 12px;
+  box-shadow:0 5px 16px rgba(24,35,58,.035);
+}
+.trend-actual-card .month{
+  display:block;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:900;
+  letter-spacing:.05em;
+}
+.trend-actual-card strong{
+  display:block;
+  margin-top:4px;
+  font-size:17px;
+  letter-spacing:-.02em;
+}
+.trend-actual-card small{
+  display:block;
+  margin-top:4px;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:800;
+}
+.trend-actual-card.sales{border-left:4px solid var(--sales)}
+.trend-actual-card.food{border-left:4px solid var(--food)}
+.trend-actual-card.labor{border-left:4px solid var(--labor)}
+.trend-actual-card.profit{border-left:4px solid var(--profit)}
+.trend-actual-card.plan{border-left:4px solid var(--plan)}
+@media(min-width:700px){.trend-actual-cards{grid-template-columns:repeat(4,minmax(0,1fr));}}
+
+
+.trend-actual-table td:first-child{font-weight:900;color:#536072}
+.trend-actual-table td:nth-child(2){font-weight:900}
+.trend-actual-table tr.latest td{background:#fff8ea}
+.trend-actual-table tr.latest td:first-child{color:#8c6a2e}
+
+
+/* Ver.14 Sky Blue theme — bright, readable, calm */
+:root{
+  --bg:#f3f9fc;
+  --surface:#ffffff;
+  --ink:#173247;
+  --muted:#718797;
+  --brand:#278fbd;
+  --brand2:#54b9df;
+  --soft:#eaf6fb;
+  --gold:#c09345;
+  --line:#dcecf3;
+  --sales:#20a9c2;
+  --food:#e98c4b;
+  --labor:#557fc7;
+  --profit:#c09345;
+  --plan:#8270c9;
+  --good:#168267;
+  --bad:#c0545a;
+  --shadow:0 15px 40px rgba(35,117,153,.09);
+  --shadow-soft:0 8px 26px rgba(35,117,153,.06);
+}
+body{
+  background:
+    radial-gradient(circle at 12% -5%,rgba(92,190,226,.16),transparent 28%),
+    linear-gradient(180deg,#f7fcfe 0%,#eef7fb 100%);
+  color:var(--ink);
+}
+.top{
+  background:
+    radial-gradient(circle at 88% 10%,rgba(255,255,255,.28),transparent 23%),
+    radial-gradient(circle at 72% 50%,rgba(76,188,224,.22),transparent 32%),
+    linear-gradient(145deg,#2389b6 0%,#3ca8d2 55%,#67c5e5 100%);
+  box-shadow:0 18px 38px rgba(31,128,170,.20);
+}
+.top .brand h1,.top .brand p,.top .brand small{color:white}
+.context{
+  background:rgba(255,255,255,.96);
+  border-color:rgba(255,255,255,.92);
+  box-shadow:0 16px 36px rgba(39,126,163,.10);
+}
+.sel select{background:#f1f8fb;border-color:#dceef5;color:#20465c}
+.tabs{
+  background:rgba(230,243,249,.94);
+  box-shadow:0 6px 20px rgba(35,117,153,.07);
+}
+.tabs button{color:#547184}
+.tabs button.active{
+  background:linear-gradient(145deg,#278fbd,#4bb4dc);
+  color:#fff;
+  box-shadow:0 8px 18px rgba(39,143,189,.22);
+}
+.tabs button:nth-child(1).active{background:linear-gradient(145deg,#278fbd,#4bb4dc)}
+.tabs button:nth-child(2).active{background:linear-gradient(145deg,#627fc1,#829bd4)}
+.tabs button:nth-child(3).active{background:linear-gradient(145deg,#219fb8,#47bfd0)}
+.tabs button:nth-child(4).active{background:linear-gradient(145deg,#d27e42,#eaa068)}
+.hero{
+  background:
+    radial-gradient(circle at 88% 18%,rgba(255,255,255,.20),transparent 24%),
+    linear-gradient(145deg,#238bb8,#4bb7dc);
+  box-shadow:0 16px 38px rgba(35,139,184,.18);
+}
+.hero strong{color:#fff}
+.hero .pill{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.22)}
+.metric,.section,.variance-section{background:#fff;border-color:#e1eef4}
+.metric:nth-child(1){background:linear-gradient(180deg,#effbfc,#fff);border-top-color:#20a9c2}
+.metric:nth-child(2){background:linear-gradient(180deg,#f5f3fc,#fff);border-top-color:#8270c9}
+.metric:nth-child(3){background:linear-gradient(180deg,#f1f6fc,#fff);border-top-color:#557fc7}
+.mode-note{
+  background:linear-gradient(90deg,#edf8fc,#f3f9fd);
+  border-color:#d9edf5;
+}
+.field{background:#f7fbfd;border-color:#e1eef4}
+.plbox{background:#fff;border-color:#dcecf3}
+.plrow{background:#fff;border-bottom-color:#e8f1f5}
+.plrow:nth-child(even){background:#f8fcfd}
+.plrow.bold{background:#edf7fb}
+.plrow.profit{background:linear-gradient(90deg,#edf8f4,#f7fbfd)}
+.plpct{background:#eaf5f9;color:#5f7888}
+.variance-summary,.impact,#trendChart{background:#f7fbfd;border-color:#deedf3}
+.table-wrap{background:#fff;border-color:#dcecf3}
+table thead th{background:#eaf5f9;color:#527184}
+table tr:nth-child(even) td{background:#fbfdfe}
+.trend-actual-table tr.latest td{background:#edf8fc}
+.coach{
+  border-left-color:#4fb7da;
+  background:linear-gradient(90deg,#eaf8fd,#f8fcfe);
+}
+#annual .section{
+  background:radial-gradient(circle at 96% 0%,rgba(130,112,201,.07),transparent 22%),#fff;
+}
+#compare .section{
+  background:radial-gradient(circle at 96% 0%,rgba(32,169,194,.08),transparent 22%),#fff;
+}
+#sim .section{
+  background:radial-gradient(circle at 96% 0%,rgba(233,140,75,.07),transparent 22%),#fff;
+}
+#journeyStatus{
+  background:linear-gradient(90deg,rgba(84,185,223,.12),rgba(130,112,201,.06)),#f7fbfd;
+}
+.fixed-action,.why{background:#e5f3f8;color:#26799c}
+dialog{background:#fff;color:#173247}
+
+
+.tabs{grid-template-columns:repeat(5,1fr)}
+.tabs button small{display:block;font-size:8px;font-weight:700;opacity:.72;margin-top:2px}
+.learn-hero{
+  background:
+    radial-gradient(circle at 96% 0%,rgba(84,185,223,.15),transparent 30%),
+    linear-gradient(180deg,#ffffff,#f6fbfd);
+}
+.learn-note{
+  margin-top:12px;padding:13px 14px;border-radius:16px;
+  background:#eaf7fc;border:1px solid #d8edf6;color:#315a70;
+  font-size:11px;line-height:1.65;font-weight:750;
+}
+.learn-list{display:grid;gap:8px}
+.learn-item{
+  border:1px solid #dfeef4;background:#fff;border-radius:18px;overflow:hidden;
+}
+.learn-item summary{
+  list-style:none;cursor:pointer;padding:14px 15px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.learn-item summary::-webkit-details-marker{display:none}
+.learn-item summary span{min-width:0}
+.learn-item summary b{display:block;font-size:14px;color:#21465b}
+.learn-item summary small{display:block;margin-top:3px;font-size:9px;color:var(--muted);font-weight:750}
+.learn-item summary i{
+  flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:#e9f6fb;color:#278fbd;font-style:normal;font-weight:900;
+}
+.learn-item[open] summary i{transform:rotate(45deg)}
+.learn-body{padding:0 15px 15px;border-top:1px solid #edf4f7}
+.learn-body h4{margin:13px 0 4px;font-size:10px;color:#278fbd;letter-spacing:.04em}
+.learn-body p{margin:0 0 8px;font-size:11px;line-height:1.7;color:#425c6b}
+.learn-body .formula{
+  padding:10px 12px;border-radius:13px;background:#f4f9fb;color:#294c60;
+  border-left:3px solid #54b9df;
+}
+.learn-body strong{color:#173f55}
+@media(max-width:560px){
+  .tabs button{font-size:9px;padding:7px 2px}
+  .tabs button small{font-size:7px}
+}
+
+
+/* REPORT / EXPORT */
+.report-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.report-toolbar button,.export-actions button{border:0;border-radius:12px;padding:10px 13px;font-weight:900;cursor:pointer;background:#e8f5fb;color:#165a78}
+.report-toolbar .primary,.export-actions .primary{background:#168dc1;color:#fff}
+.report-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:13px}
+.report-head h2{margin:2px 0 0}.report-head small{color:var(--muted);font-weight:800}
+.report-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.report-kpi{border:1px solid #dcebf2;border-radius:16px;padding:12px;background:#fff}
+.report-kpi span{font-size:10px;color:#607987;font-weight:900}.report-kpi strong{display:block;font-size:21px;margin-top:4px;color:#173f55}.report-kpi small{display:block;margin-top:4px;color:#6f8490}
+.report-compare{margin-top:12px;overflow:auto;border:1px solid #dcebf2;border-radius:16px}.report-compare table{width:100%;border-collapse:collapse}.report-compare th,.report-compare td{padding:10px 9px;border-bottom:1px solid #edf3f6;text-align:right;font-size:11px;white-space:nowrap}.report-compare th:first-child,.report-compare td:first-child{text-align:left}.report-compare th{background:#f2f9fc;color:#4f7181}
+.report-comments{display:grid;gap:10px;margin-top:12px}.report-comments label{font-size:11px;font-weight:900;color:#315b6e}.report-comments textarea{width:100%;min-height:72px;margin-top:5px;border:1px solid #dcebf2;border-radius:14px;padding:11px;box-sizing:border-box;font:inherit;resize:vertical}
+.export-panel{margin-top:13px;padding:14px;border:1px solid #dcebf2;border-radius:17px;background:#f9fcfd}.export-panel h3{margin:0 0 8px}.export-presets{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.export-presets button{border:1px solid #b9dceb;border-radius:999px;background:#fff;padding:7px 10px;color:#25647e;font-weight:900}.export-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.export-check{display:flex;gap:7px;align-items:center;background:#fff;border:1px solid #e0edf3;border-radius:11px;padding:9px;font-size:11px;font-weight:800}.export-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#reportPrintArea{display:none}
+@media(min-width:700px){.report-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}.export-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media print{
+  body *{visibility:hidden!important}
+  #reportPrintArea,#reportPrintArea *{visibility:visible!important}
+  #reportPrintArea{display:block!important;position:absolute;inset:0;width:100%;padding:12mm;box-sizing:border-box;background:#fff;color:#111}
+  #reportPrintArea table{width:100%;border-collapse:collapse;margin:8px 0 14px}
+  #reportPrintArea th,#reportPrintArea td{border:1px solid #bbb;padding:6px;font-size:10px;text-align:right}
+  #reportPrintArea th:first-child,#reportPrintArea td:first-child{text-align:left}
+  #reportPrintArea h1{font-size:20px;margin:0 0 4px}#reportPrintArea h2{font-size:14px;margin:15px 0 6px}
+  #reportPrintArea .print-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.print-card{border:1px solid #aaa;padding:8px}.print-card span{font-size:9px}.print-card strong{display:block;font-size:15px;margin-top:3px}
+  @page{size:A4 portrait;margin:8mm}
+}
+
+
+
+.ai-panel{margin-top:13px;padding:15px;border:1px solid #cfe5ee;border-radius:18px;background:linear-gradient(180deg,#f6fbfd,#eef8fb)}
+.ai-panel h3{margin:0 0 6px;color:#164e68}.ai-panel p{margin:0 0 10px;font-size:11px;line-height:1.65;color:#56717e}
+.ai-findings{display:grid;gap:7px;margin:10px 0}.ai-finding{display:flex;gap:9px;align-items:flex-start;background:#fff;border:1px solid #deedf3;border-radius:13px;padding:10px;font-size:11px;line-height:1.55}.ai-finding b{color:#174f68}.ai-rank{flex:0 0 auto;border-radius:999px;padding:3px 7px;background:#e5f4fa;color:#176585;font-size:9px;font-weight:950}
+.copy-status{font-size:10px;font-weight:900;color:#197052;margin-left:4px}
+.report-compare .rate{color:#72838c;font-size:9px;display:block;margin-top:2px}.report-compare .total-row td{font-weight:950;background:#f5fafc}.report-compare .profit-row td{font-weight:950;background:#eaf6f1}.report-compare .section-row td{font-weight:950;background:#edf5f8;color:#315c6e;text-align:left!important}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="topbar"><div class="brand"><small>STORE MANAGEMENT</small><h1>PROFIT SHIFT</h1><p>Store Management Simulator<br><span style="font-size:10px;opacity:.82">数字を動かし、利益を考える。</span></p></div><button id="resetBtn" class="reset">初期化</button></div></header>
+<main class="shell">
+<section class="context">
+<div class="sel"><label>年度</label><select id="yearSelect"></select></div>
+<div class="sel"><label>月</label><select id="monthSelect"></select></div>
+<div class="sel"><label>入力する数字</label><select id="modeSelect"><option value="actual">実績</option><option value="budget">予算</option></select></div>
+</section>
+<section class="section" style="margin-top:12px;padding:13px 15px">
+  <div class="section-head" style="margin-bottom:7px">
+    <div>
+      <span class="step">START MONTH</span>
+      <h2 style="font-size:16px">利用開始月</h2>
+    </div>
+    <button id="startBtn" class="fixed-action" type="button">利用開始月を設定</button>
+  </div>
+  <div id="journeyStatus" class="mode-note" style="margin:0"></div>
+</section>
+<nav class="tabs"><button class="tab active" data-view="monthly">月次PL</button><button class="tab" data-view="annual">年間計画<small>予算</small></button><button class="tab" data-view="compare">比較<small>推移</small></button><button class="tab" data-view="sim">利益改善<small>もしも</small></button><button class="tab" data-view="report">REPORT<small>レポート</small></button><button class="tab" data-view="learn">LEARN<small>数字の見方</small></button></nav>
+
+<section id="monthly" class="view active">
+<article class="hero"><span id="heroLabel" class="hero-label">今月の営業利益</span><div id="heroProfit" class="hero-value">¥0</div><div id="heroProfitRate" class="hero-rate">営業利益率 0.0%</div><div class="hero-badges"><span class="badge" id="heroBudget">予算比 —</span><span class="badge" id="heroYoY">昨対 —</span></div></article>
+<div class="metrics"><article class="metric"><span>売上高</span><strong id="heroSales">¥0</strong><small>実際の売上を入力</small></article><article class="metric"><span>FL率</span><strong id="heroFL">0.0%</strong><small>原価＋人件費</small></article><article class="metric"><span>人時売上</span><strong id="heroSalesPerHour">—</strong><small>総労働時間を入力時</small></article></div>
+<article id="budgetVarianceSection" class="variance-section" style="display:none">
+  <div class="variance-head">
+    <div><span class="step">BUDGET GAP</span><h2>今月の予算差</h2></div>
+    <button class="why" data-hint="予算と実績の差を、利益にとって良化か悪化かで色分けします。売上・利益は上振れが緑、原価率・人件費率・FL率は下振れが緑です。">見方</button>
+  </div>
+  <div id="budgetVarianceGrid" class="variance-grid"></div>
+  <div id="budgetVarianceSummary" class="variance-summary"></div>
+</article>
+
+<article class="section"><div class="section-head"><div><span class="step">INPUT 1</span><h2>PLの数字を入力</h2></div><div class="fixed-tools"><button id="fixedCostBtn" class="fixed-action" type="button">固定費設定</button><button class="why" data-hint="実績では、POSや会計資料などで確定した実際の数字をそのまま入力します。予算では、その月に目指す計画数字を入力します。固定費は一度設定すると各月に自動反映し、必要な月だけ上書きできます。">なぜ？</button></div></div><div id="modeNote" class="mode-note"></div><div id="fixedSummary" class="fixed-summary"></div><div class="fields">
+<div class="field"><label>売上高</label><input data-key="sales" type="number" min="0" step="1000" inputmode="numeric"><small>税込・税抜は社内ルールで統一</small></div>
+<div class="field"><label>売上原価</label><input data-key="foodCost" type="number" min="0" step="1000" inputmode="numeric"><small>食材・飲料等の原価</small></div>
+<div class="field"><label>人件費</label><input data-key="laborCost" type="number" min="0" step="1000" inputmode="numeric"><small>社員＋アルバイト等</small></div>
+<div class="subhead">販売費・一般管理費</div>
+<div class="field"><label>広告宣伝費</label><input data-key="advertising" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field"><label>販売促進費</label><input data-key="promotion" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field"><label>消耗品費</label><input data-key="supplies" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field"><label>水道光熱費</label><input data-key="utilities" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field fixed-field" data-fixed-wrap="rent"><label>地代家賃</label><input data-key="rent" data-fixed-key="rent" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field"><label>設備費</label><input data-key="equipment" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field"><label>修繕費</label><input data-key="repairs" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field fixed-field" data-fixed-wrap="depreciation"><label>減価償却費</label><input data-key="depreciation" data-fixed-key="depreciation" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field fixed-field" data-fixed-wrap="communications"><label>通信費</label><input data-key="communications" data-fixed-key="communications" type="number" min="0" step="1000" inputmode="numeric"></div>
+<div class="field"><label>その他</label><input data-key="other" type="number" min="0" step="1000" inputmode="numeric"></div>
+</div><div class="fixed-tools" style="margin-top:10px"><span class="fixed-chip">地代家賃・減価償却費・通信費は基本値を自動反映</span><button id="restoreFixedBtn" class="fixed-reset" type="button">この月を固定値に戻す</button></div><div class="note"><label>この月の計画・振り返りメモ</label><textarea id="monthNote" placeholder="例：歓送迎会需要／近隣イベント／改装／天候影響／来月への課題など"></textarea></div></article>
+
+<article class="section"><div class="section-head"><div><span class="step">INPUT 2</span><h2>営業データ</h2></div><button class="why" data-hint="PLだけでは生産性までは見えません。客数と総労働時間を入れると、客単価や人時売上を確認できます。分からない月は空欄でもPL計算はできます。">なぜ？</button></div><div class="fields"><div class="field"><label>月間客数（任意）</label><input data-key="customers" type="number" min="0" step="1" inputmode="numeric"></div><div class="field"><label>総労働時間（任意）</label><input data-key="totalHours" type="number" min="0" step="1" inputmode="numeric"></div></div><div class="four"><div class="mini"><span>客単価</span><strong id="avgSpendKpi">—</strong></div><div class="mini"><span>人時売上</span><strong id="sphKpi">—</strong></div></div></article>
+
+<article class="section"><div class="section-head"><div><span class="step">CHECK</span><h2>数字を読む</h2></div></div><div class="four"><div class="mini"><span>原価率</span><strong id="foodRate">0.0%</strong></div><div class="mini"><span>人件費率</span><strong id="laborRate">0.0%</strong></div><div class="mini"><span>FL率</span><strong id="flRate">0.0%</strong></div><div class="mini"><span>営業利益率</span><strong id="profitRate">0.0%</strong></div></div><p id="coachText" class="coach"></p></article>
+
+<article class="section"><div class="section-head"><div><span class="step">PL</span><h2>月次PL</h2></div></div><div id="plTable" class="pl"></div><div class="kpis"><div class="kpi"><span>売上総利益率</span><strong id="kpiGross">0.0%</strong></div><div class="kpi"><span>FL率</span><strong id="kpiFL">0.0%</strong></div><div class="kpi"><span>人時売上</span><strong id="kpiSPH">—</strong></div><div class="kpi"><span>損益分岐点売上</span><strong id="kpiBEP">参考値</strong></div></div></article>
+</section>
+
+<section id="annual" class="view"><article class="section"><div class="section-head"><div><span class="step">YEAR PLAN</span><h2>年間計画</h2></div></div><p class="intro">各月の月予算を積み上げて年間計画を作ります。繁忙期・閑散期を自店の実態に合わせて考え、実績が入ったら予算差を確認します。2年目以降は前年同月実績も計画材料にします。</p><div class="annual-hero"><div class="annual-card"><span>年間売上予算</span><strong id="annualBudgetSales">¥0</strong></div><div class="annual-card"><span>年間営業利益予算</span><strong id="annualBudgetProfit">¥0</strong></div><div class="annual-card"><span>年間営業利益率</span><strong id="annualBudgetRate">0.0%</strong></div></div><div class="table-wrap"><table id="annualTable"></table></div></article></section>
+
+<section id="compare" class="view">
+<article class="section">
+  <div class="section-head">
+    <div><span class="step">TREND</span><h2>科目の推移を見る</h2></div>
+  </div>
+  <p class="intro">予算・昨対は年間計画で確認。ここでは1つの科目を選び、店長就任後の時間的な変化を追います。</p>
+  <div class="fields">
+    <div class="field">
+      <label>比較する科目</label>
+      <select id="trendMetric" style="width:100%;border:0;background:transparent;font-weight:900;font-size:16px">
+        <option value="sales">売上高</option>
+        <option value="food">売上原価</option>
+        <option value="foodRate">原価率</option>
+        <option value="labor">人件費</option>
+        <option value="laborRate">人件費率</option>
+        <option value="flRate">FL率</option>
+        <option value="gross">売上総利益</option>
+        <option value="sga">販管費</option>
+        <option value="profit">営業利益</option>
+        <option value="profitRate">営業利益率</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>表示期間</label>
+      <select id="trendPeriod" style="width:100%;border:0;background:transparent;font-weight:900;font-size:16px">
+        <option value="12">12か月</option>
+        <option value="24">24か月</option>
+        <option value="36">36か月</option>
+      </select>
+    </div>
+  </div>
+  <div id="trendChart" style="margin-top:16px"></div>
+  <div style="margin-top:14px">
+    <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:8px">
+      <div><span class="step">LAST 12 MONTHS</span><h3 style="margin:2px 0 0;font-size:16px">直近12か月の実数</h3></div>
+      <small style="color:var(--muted);font-weight:800">年間計画の根拠に使う</small>
+    </div>
+    <div id="trendActualTable" class="table-wrap"></div>
+  </div>
+  <div id="trendTable" class="table-wrap" style="margin-top:12px"></div>
+  <p id="compareCoach" class="coach"></p>
+</article>
+</section>
+
+<section id="sim" class="view"><article class="section"><div class="section-head"><div><span class="step">SIMULATION</span><h2>利益改善シミュレーション</h2></div></div><p class="intro">入力済みの実績を基準に「もし」を動かします。PLには各科目の売上比率を表示。原価は「変更後の原価率」を直接指定します。ここで変更した数字は実績には保存されません。</p><div class="sim-base"><span>基準営業利益</span><strong id="simBaseProfit">¥0</strong></div><div class="sliders">
+<label>売上 <strong id="simSalesLabel"></strong><input id="simSales" type="range" min="80" max="120" value="100"></label>
+<label>変更後の原価率 <strong id="simFoodLabel"></strong><input id="simFood" type="range" min="0" max="60" value="30" step="0.1"></label>
+<label>人件費 <strong id="simLaborLabel"></strong><input id="simLabor" type="range" min="80" max="120" value="100"></label>
+<label>広告・販促費 <strong id="simMarketingLabel"></strong><input id="simMarketing" type="range" min="50" max="150" value="100"></label>
+<label>その他経費 <strong id="simOtherLabel"></strong><input id="simOther" type="range" min="70" max="130" value="100"></label>
+</div><div class="sim-out"><span>変更後 営業利益</span><strong id="simProfit">¥0</strong></div><div class="sim-out"><span>改善効果</span><strong id="simDelta">¥0</strong></div><div id="impactList" class="impacts"></div><p class="coach">利益を増やす方法は「経費を削る」だけではありません。売上・原価・人件費・販促の関係を見ながら、現場で実行できる改善を考えます。</p></article></section>
+</main>
+
+
+<section id="report" class="view">
+  <article class="section">
+    <div class="report-head"><div><span class="step">REPORT</span><h2>レポート</h2></div><small id="reportPeriodLabel"></small></div>
+    <p class="intro">単月だけで判断せず、予算・先月・前年同月とPL全科目を比較します。数字の変化から確認すべきポイントを整理し、原因と次の行動を考えます。</p>
+    <div class="report-toolbar"><button id="lightPdfBtn" class="primary" type="button">PDF保存</button><button id="printBtn" type="button">印刷</button><span id="copyStatus" class="copy-status"></span><button id="csvBtn" type="button">月次CSV</button><button id="jsonBtn" type="button">バックアップJSON</button></div>
+    <div id="reportKpis" class="report-kpis"></div>
+    <div id="reportCompare" class="report-compare"></div>
+    <div class="ai-panel"><h3>確認ポイント</h3><p>比較データから変化の大きい科目を自動抽出します。原因を決めつけず、まず確認するポイントとして整理します。</p><div id="aiFindings" class="ai-findings"></div></div>
+    <div class="report-comments">
+      <label>良かったこと<textarea id="reportGood" placeholder="数字の変化と、実施したことを簡潔に"></textarea></label>
+      <label>課題<textarea id="reportIssue" placeholder="原因を一つに絞って簡潔に"></textarea></label>
+      <label>来月やること<textarea id="reportAction" placeholder="具体的な行動を一つ〜三つ"></textarea></label>
+    </div>
+    <div class="export-panel">
+      <h3>詳細出力</h3>
+      <div class="export-presets"><button type="button" data-preset="light">レポート用</button><button type="button" data-preset="monthly">月次詳細</button><button type="button" data-preset="annual">年間振り返り</button></div>
+      <div class="export-grid">
+        <label class="export-check"><input type="checkbox" data-export="summary" checked>今月サマリー</label>
+        <label class="export-check"><input type="checkbox" data-export="compare" checked>先月・昨年比較</label>
+        <label class="export-check"><input type="checkbox" data-export="pl">月次PL</label>
+        <label class="export-check"><input type="checkbox" data-export="budget">予算・実績・差異</label>
+        <label class="export-check"><input type="checkbox" data-export="annual">年間計画</label>
+        <label class="export-check"><input type="checkbox" data-export="trend">直近12か月実績</label>
+        <label class="export-check"><input type="checkbox" data-export="comments" checked>店長コメント</label>
+        <label class="export-check"><input type="checkbox" data-export="note">月次メモ</label>
+      </div>
+      <div class="export-actions"><button id="customPdfBtn" class="primary" type="button">選択項目をPDF保存</button><button id="customPrintBtn" type="button">選択項目を印刷</button></div>
+    </div>
+  </article>
+</section>
+<div id="reportPrintArea"></div>
+
+<section id="learn" class="view">
+  <article class="section learn-hero">
+    <div class="section-head">
+      <div><span class="step">LEARN</span><h2>数字の見方</h2></div>
+    </div>
+    <p class="intro">分からない数字があったら、ここで確認すれば大丈夫。暗記する必要はありません。意味を知って、自分の店の数字とつなげてみましょう。</p>
+    <div class="learn-note">「知らない」より、「分からないまま数字だけ追う」方が危険です。まず意味を確認してから、自店の予算・実績・前年と比べてみましょう。</div>
+  </article>
+
+  <article class="section">
+    <div class="section-head"><div><span class="step">BASIC</span><h2>まず知っておきたい数字</h2></div></div>
+    <div class="learn-list">
+
+      <details class="learn-item" open>
+        <summary><span><b>人時売上</b><small>1時間の労働で、いくら売上を作ったか</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>これは何？</h4><p>店舗の生産性を見る代表的な数字です。スタッフ全員の労働時間に対して、どれだけ売上を作ったかを見ます。</p>
+          <h4>どう計算する？</h4><p class="formula">売上 ¥5,000,000 ÷ 総労働時間 1,000時間 ＝ <strong>人時売上 ¥5,000</strong></p>
+          <h4>いくらなら良い？</h4><p>一律の正解はありません。業態・営業時間・サービスレベルで変わります。まずは自店の予算、過去実績、前年同月と比べます。</p>
+          <h4>低かったら？</h4><p>すぐ人を減らすのではなく、「売上が足りない？」「配置が多い？」「暇な時間帯がある？」と原因を分けて考えます。</p>
+        </div>
+      </details>
+
+      <details class="learn-item">
+        <summary><span><b>総労働時間</b><small>店舗で使った労働時間の合計</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>これは何？</h4><p>その月に店舗で働いたスタッフ全員の勤務時間を合計したものです。社員・アルバイトを含めて考えます。</p>
+          <h4>なぜ見る？</h4><p>人件費額だけでは「高い理由」が分かりません。総労働時間と売上を一緒に見ることで、配置や生産性を考えやすくなります。</p>
+          <h4>見るポイント</h4><p>売上が同じなのに総労働時間だけ増えていないか。逆に、労働時間を減らしすぎてサービスや売上を落としていないかを確認します。</p>
+        </div>
+      </details>
+
+      <details class="learn-item">
+        <summary><span><b>原価率</b><small>売上のうち食材などの原価が占める割合</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>どう計算する？</h4><p class="formula">売上原価 ¥1,700,000 ÷ 売上 ¥5,000,000 ×100 ＝ <strong>34.0%</strong></p>
+          <h4>なぜ重要？</h4><p>原価率が1%変わるだけでも、売上規模によって利益への影響は大きくなります。</p>
+          <h4>高かったら？</h4><p>値上げだけでなく、ロス・廃棄・ポーション・仕入価格・売れた商品の構成などを確認します。</p>
+        </div>
+      </details>
+
+      <details class="learn-item">
+        <summary><span><b>人件費率</b><small>売上のうち人件費が占める割合</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>どう計算する？</h4><p class="formula">人件費 ¥1,400,000 ÷ 売上 ¥5,000,000 ×100 ＝ <strong>28.0%</strong></p>
+          <h4>高かったら？</h4><p>「人を減らす」と決める前に、人時売上・総労働時間・時間帯別の忙しさ・売上不足のどれが原因かを確認します。</p>
+        </div>
+      </details>
+
+      <details class="learn-item">
+        <summary><span><b>FL率</b><small>原価と人件費を合わせた割合</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>これは何？</h4><p>Food（原価）＋ Labor（人件費）が売上に対してどれくらいかを見る数字です。飲食店の主要コストをまとめて確認できます。</p>
+          <h4>どう計算する？</h4><p class="formula">原価率 34.0% ＋ 人件費率 28.0% ＝ <strong>FL率 62.0%</strong></p>
+          <h4>見るポイント</h4><p>FL率だけで良し悪しを決めず、原価と人件費のどちらが動いたのかを分けて見ます。</p>
+        </div>
+      </details>
+
+      <details class="learn-item">
+        <summary><span><b>営業利益・営業利益率</b><small>店舗運営の結果、最終的にいくら残ったか</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>これは何？</h4><p>売上から原価・人件費・家賃・水道光熱費・販促費など、店舗運営に必要な費用を差し引いて残る利益です。</p>
+          <h4>営業利益率とは？</h4><p class="formula">営業利益 ¥500,000 ÷ 売上 ¥5,000,000 ×100 ＝ <strong>営業利益率 10.0%</strong></p>
+          <h4>考え方</h4><p>利益だけを見るのではなく、「なぜこの利益になったか」を売上・原価・人件費・その他経費へ戻って考えます。</p>
+        </div>
+      </details>
+
+      <details class="learn-item">
+        <summary><span><b>損益分岐点売上</b><small>赤字と黒字の境目になる売上</small></span><i>＋</i></summary>
+        <div class="learn-body">
+          <h4>これは何？</h4><p>利益がほぼ0になる売上水準です。「最低でもどのくらい売上が必要か」を考える目安になります。</p>
+          <h4>なぜ見る？</h4><p>目標売上を感覚だけで決めず、固定費や利益構造から必要売上を考えられるようになります。</p>
+          <h4>注意</h4><p>簡易計算では費用を固定費・変動費に分けて考えます。実際の店舗では完全に固定・変動と分けられない費用もあります。</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <article class="section">
+    <div class="section-head"><div><span class="step">MANAGEMENT</span><h2>計画と振り返りの数字</h2></div></div>
+    <div class="learn-list">
+      <details class="learn-item">
+        <summary><span><b>予算と実績</b><small>計画した数字と、実際に出た数字</small></span><i>＋</i></summary>
+        <div class="learn-body"><p>予算は「こうしたい」という計画、実績は「実際にどうだったか」という結果です。大事なのは当たった・外れたではなく、<strong>なぜ差が出たか</strong>を考えることです。</p></div>
+      </details>
+      <details class="learn-item">
+        <summary><span><b>予算差</b><small>計画に対して、どこがズレたか</small></span><i>＋</i></summary>
+        <div class="learn-body"><p>売上や利益は予算より高ければ基本的に良化。原価率・人件費率などの費用率は、予算より低ければ基本的に良化です。差を見つけたら、金額だけでなく原因を確認します。</p></div>
+      </details>
+      <details class="learn-item">
+        <summary><span><b>昨対（前年同月比）</b><small>去年の同じ月と比べる</small></span><i>＋</i></summary>
+        <div class="learn-body"><p>季節性のある飲食店では重要な比較です。ただし、曜日配列・営業日数・価格改定・改装など条件が違う場合は、数字だけで判断しません。</p></div>
+      </details>
+      <details class="learn-item">
+        <summary><span><b>構成比</b><small>各費用が売上の何%を占めるか</small></span><i>＋</i></summary>
+        <div class="learn-body"><p>金額だけでは店舗規模が変わると比較しにくいため、売上に対する割合でも見ます。PROFIT SHIFTのPLでは各科目の横に構成比を表示しています。</p></div>
+      </details>
+      <details class="learn-item">
+        <summary><span><b>固定費と変動費</b><small>売上に関係なく出る費用／売上に伴って動く費用</small></span><i>＋</i></summary>
+        <div class="learn-body"><p><strong>固定費</strong>は家賃など、売上が少なくても発生しやすい費用。<strong>変動費</strong>は食材原価など、売上に伴って増減しやすい費用です。人件費など、実際には両方の性質を持つ費用もあります。</p></div>
+      </details>
+    </div>
+  </article>
+
+  <article class="section">
+    <div class="section-head"><div><span class="step">SALES</span><h2>売上を考える数字</h2></div></div>
+    <div class="learn-list">
+      <details class="learn-item">
+        <summary><span><b>客数</b><small>何人のお客様に来てもらったか</small></span><i>＋</i></summary>
+        <div class="learn-body"><p>売上を作る基本要素です。売上が落ちたとき、「客数が減ったのか」「客単価が下がったのか」を分けて見るだけでも原因が見えやすくなります。</p></div>
+      </details>
+      <details class="learn-item">
+        <summary><span><b>客単価</b><small>お客様1人あたりの平均売上</small></span><i>＋</i></summary>
+        <div class="learn-body"><p class="formula">売上 ¥5,000,000 ÷ 客数 1,000人 ＝ <strong>客単価 ¥5,000</strong></p><p>値上げだけでなく、追加注文・商品構成・コース比率などでも変わります。</p></div>
+      </details>
+      <details class="learn-item">
+        <summary><span><b>回転率・回転数</b><small>席をどれくらい有効に使えたか</small></span><i>＋</i></summary>
+        <div class="learn-body"><p>同じ席数でも、営業時間や滞在時間によって受け入れられる客数は変わります。ただし回転だけを追い、体験価値を落とさないことも重要です。</p></div>
+      </details>
+    </div>
+  </article>
+</section>
+
+<dialog id="fixedDialog"><h3 style="margin:0 0 4px">固定費設定</h3><p style="color:#718078;font-size:12px">選択中の年月から先の予算・実績へ自動反映します。過去月の数字は変わりません。月次PLで直接変更した月だけ、その月の上書きとして保存されます。</p><div class="fixed-grid"><label>地代家賃<input id="fixedRent" type="number" min="0" step="1000" inputmode="numeric"></label><label>減価償却費<input id="fixedDepreciation" type="number" min="0" step="1000" inputmode="numeric"></label><label>通信費<input id="fixedCommunications" type="number" min="0" step="1000" inputmode="numeric"></label></div><button id="saveFixedBtn">固定費を保存</button><button id="cancelFixedBtn" style="margin-top:8px;background:#e8ece8;color:#173c30">キャンセル</button></dialog><dialog id="hintDialog"><p id="hintText"></p><button id="closeHint">閉じる</button></dialog>
+<script>
+const STORAGE_KEY='managerPL_v16';
+const PREV_STORAGE_KEY='managerPL_v15';
+const months=Array.from({length:12},(_,i)=>i+1);
+function ymAdd(y,m,delta){const d=new Date(y,m-1+delta,1);return [d.getFullYear(),d.getMonth()+1]}
+let years=[];
+const fixedKeys=['rent','depreciation','communications'];
+const fixedLabels={rent:'地代家賃',depreciation:'減価償却費',communications:'通信費'};
+const defaults={sales:0,foodCost:0,laborCost:0,advertising:0,promotion:0,supplies:0,utilities:0,rent:0,equipment:0,repairs:0,depreciation:0,communications:0,other:0,customers:0,totalHours:0,note:'',reportGood:'',reportIssue:'',reportAction:'',fixedOverrides:{}};
+let state=loadState();
+if(!state.startYM) state.startYM=[new Date().getFullYear(),new Date().getMonth()+1];
+function journeyYears(){const [sy,sm]=state.startYM;const [ey]=ymAdd(sy,sm,35);return Array.from({length:ey-sy+1},(_,i)=>sy+i)}
+years=journeyYears();
+let currentYear=state.startYM[0],currentMonth=state.startYM[1],currentMode='actual';
+const $=id=>document.getElementById(id);const num=v=>Number(v)||0;
+function freshRecord(){return {...defaults,fixedOverrides:{}}}
+function blankYear(){const o={};months.forEach(m=>o[m]={actual:freshRecord(),budget:freshRecord()});return o}
+function normalizeState(s){
+  if(!s||!s.data){const data={};years.forEach(y=>data[y]=blankYear());return{data,fixedHistory:[]}}
+  s.fixedHistory=s.fixedHistory||[];
+  years.forEach(y=>{if(!s.data[y])s.data[y]=blankYear();months.forEach(m=>{if(!s.data[y][m])s.data[y][m]={actual:freshRecord(),budget:freshRecord()};['actual','budget'].forEach(mode=>{const r=s.data[y][m][mode]||freshRecord();s.data[y][m][mode]={...defaults,...r,fixedOverrides:{...(r.fixedOverrides||{})}}})})});
+  return s
+}
+function migrateV4(s){
+  const n=normalizeState(s);n.fixedHistory=[];
+  years.forEach(y=>months.forEach(m=>['actual','budget'].forEach(mode=>{const r=n.data[y][m][mode];fixedKeys.forEach(k=>{if(num(r[k])!==0)r.fixedOverrides[k]=true})})));
+  return n
+}
+function loadState(){
+  try{
+    const s=JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(s&&s.data)return s;
+  }catch(e){}
+  try{
+    const old=JSON.parse(localStorage.getItem(PREV_STORAGE_KEY));
+    if(old&&old.data)return old;
+  }catch(e){}
+  return {data:{},fixedHistory:[]};
+}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function money(v){return new Intl.NumberFormat('ja-JP',{style:'currency',currency:'JPY',maximumFractionDigits:0}).format(Math.round(v||0))}
+function pct(v){return `${(v||0).toFixed(1)}%`}
+function rawRec(y=currentYear,m=currentMonth,mode=currentMode){return state.data[y][m][mode]}
+function ensureJourneyData(){
+  years=journeyYears();
+  state.data=state.data||{};
+  years.forEach(y=>{
+    if(!state.data[y]) state.data[y]=blankYear();
+    months.forEach(m=>{
+      if(!state.data[y][m]) state.data[y][m]={actual:freshRecord(),budget:freshRecord()};
+      ['actual','budget'].forEach(mode=>{
+        const r=state.data[y][m][mode]||freshRecord();
+        state.data[y][m][mode]={...defaults,...r,fixedOverrides:{...(r.fixedOverrides||{})}};
+      });
+    });
+  });
+}
+function inJourney(y,m){
+  const [sy,sm]=state.startYM,[ey,em]=ymAdd(sy,sm,35),v=y*100+m;
+  return v>=sy*100+sm&&v<=ey*100+em;
+}
+function journeyMonthNo(y,m){const [sy,sm]=state.startYM;return (y-sy)*12+(m-sm)+1}
+function journeyLabel(y,m){
+  const n=journeyMonthNo(y,m);
+  return n>=1&&n<=36?`${Math.ceil(n/12)}年目・${n}か月目`:'3年間の範囲外';
+}
+function fixedAt(y=currentYear,m=currentMonth){const target=y*100+m;let best=null;for(const h of (state.fixedHistory||[])){const key=num(h.year)*100+num(h.month);if(key<=target&&(!best||key>(num(best.year)*100+num(best.month))))best=h}return best?.values||{rent:0,depreciation:0,communications:0}}
+function effectiveRec(r,y=currentYear,m=currentMonth){const out={...r},fixed=fixedAt(y,m);fixedKeys.forEach(k=>{if(!r.fixedOverrides?.[k])out[k]=num(fixed[k])});return out}
+function rec(y=currentYear,m=currentMonth,mode=currentMode){return effectiveRec(rawRec(y,m,mode),y,m)}
+function calc(r){const sales=num(r.sales),food=num(r.foodCost),labor=num(r.laborCost),advertising=num(r.advertising),promotion=num(r.promotion),supplies=num(r.supplies),utilities=num(r.utilities),rent=num(r.rent),equipment=num(r.equipment),repairs=num(r.repairs),depreciation=num(r.depreciation),communications=num(r.communications),other=num(r.other),gross=sales-food,sga=labor+advertising+promotion+supplies+utilities+rent+equipment+repairs+depreciation+communications+other,profit=gross-sga,foodRate=sales?food/sales*100:0,laborRate=sales?labor/sales*100:0,flRate=sales?(food+labor)/sales*100:0,profitRate=sales?profit/sales*100:0,grossRate=sales?gross/sales*100:0,avgSpend=num(r.customers)?sales/num(r.customers):0,sph=num(r.totalHours)?sales/num(r.totalHours):0;return{sales,food,labor,advertising,promotion,supplies,utilities,rent,equipment,repairs,depreciation,communications,other,gross,sga,profit,foodRate,laborRate,flRate,profitRate,grossRate,avgSpend,sph}}
+function init(){
+ yearSelect.innerHTML=years.map(y=>`<option>${y}</option>`).join('');
+monthSelect.innerHTML=months.map(m=>`<option value="${m}">${m}月</option>`).join('');yearSelect.value=currentYear;monthSelect.value=currentMonth;modeSelect.value=currentMode;
+ document.querySelectorAll('[data-key]').forEach(el=>el.addEventListener('input',()=>{const r=rawRec();r[el.dataset.key]=num(el.value);if(el.dataset.fixedKey){r.fixedOverrides=r.fixedOverrides||{};r.fixedOverrides[el.dataset.fixedKey]=true}save();render()}));
+ yearSelect.onchange=()=>{currentYear=+yearSelect.value;render()};monthSelect.onchange=()=>{currentMonth=+monthSelect.value;render()};modeSelect.onchange=()=>{currentMode=modeSelect.value;render()};
+const startBtnEl=document.getElementById('startBtn');
+const startDialogEl=document.getElementById('startDialog');
+const startYearEl=document.getElementById('startYear');
+const startMonthEl=document.getElementById('startMonth');
+const saveStartBtnEl=document.getElementById('saveStartBtn');
+const cancelStartBtnEl=document.getElementById('cancelStartBtn');
+const trendMetricEl=document.getElementById('trendMetric');
+const trendPeriodEl=document.getElementById('trendPeriod');
+startMonthEl.innerHTML=months.map(m=>`<option value="${m}">${m}月</option>`).join('');
+startBtnEl.onclick=()=>{startYearEl.value=state.startYM[0];startMonthEl.value=state.startYM[1];startDialogEl.showModal()};
+cancelStartBtnEl.onclick=()=>startDialogEl.close();
+saveStartBtnEl.onclick=()=>{
+  const sy=+startYearEl.value,sm=+startMonthEl.value;
+  if(!sy||!sm)return;
+  state.startYM=[sy,sm];
+  ensureJourneyData();
+  currentYear=sy;currentMonth=sm;
+  save();startDialogEl.close();render();
+};
+trendMetricEl.onchange=renderCompare;
+trendPeriodEl.onchange=renderCompare;
+ ['reportGood','reportIssue','reportAction'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',()=>{rawRec(currentYear,currentMonth,'actual')[id]=el.value;save()})});
+ document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>applyExportPreset(b.dataset.preset)));
+ const runPrintDialog=(asPdf=false)=>{
+   preparePrint();
+   const status=document.getElementById('copyStatus');
+   if(status)status.textContent=asPdf?'印刷画面で「PDFとして保存」を選択してください':'印刷画面を開きます';
+   setTimeout(()=>window.print(),80);
+   setTimeout(()=>{if(status)status.textContent=''},4500);
+ };
+ const lightPdfBtnEl=document.getElementById('lightPdfBtn'); if(lightPdfBtnEl)lightPdfBtnEl.onclick=()=>{applyExportPreset('light');runPrintDialog(true)};
+ const printBtnEl=document.getElementById('printBtn'); if(printBtnEl)printBtnEl.onclick=()=>{applyExportPreset('light');runPrintDialog(false)};
+ const customPdfBtnEl=document.getElementById('customPdfBtn'); if(customPdfBtnEl)customPdfBtnEl.onclick=()=>runPrintDialog(true);
+ const customPrintBtnEl=document.getElementById('customPrintBtn'); if(customPrintBtnEl)customPrintBtnEl.onclick=()=>runPrintDialog(false);
+ const csvBtnEl=document.getElementById('csvBtn'); if(csvBtnEl)csvBtnEl.onclick=exportCurrentMonthCSV;
+ const jsonBtnEl=document.getElementById('jsonBtn'); if(jsonBtnEl)jsonBtnEl.onclick=exportBackupJSON;
+
+ monthNote.addEventListener('input',()=>{rawRec().note=monthNote.value;save()});
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(b.dataset.view).classList.add('active');render()});
+ document.querySelectorAll('.why').forEach(b=>b.onclick=()=>{hintText.textContent=b.dataset.hint;hintDialog.showModal()});closeHint.onclick=()=>hintDialog.close();
+ fixedCostBtn.onclick=()=>{const f=fixedAt();fixedRent.value=f.rent||'';fixedDepreciation.value=f.depreciation||'';fixedCommunications.value=f.communications||'';fixedDialog.showModal()};cancelFixedBtn.onclick=()=>fixedDialog.close();
+ saveFixedBtn.onclick=()=>{state.fixedHistory=state.fixedHistory||[];state.fixedHistory=state.fixedHistory.filter(h=>!(num(h.year)===currentYear&&num(h.month)===currentMonth));state.fixedHistory.push({year:currentYear,month:currentMonth,values:{rent:num(fixedRent.value),depreciation:num(fixedDepreciation.value),communications:num(fixedCommunications.value)}});state.fixedHistory.sort((a,b)=>(a.year*100+a.month)-(b.year*100+b.month));save();fixedDialog.close();render()};
+ restoreFixedBtn.onclick=()=>{const r=rawRec();r.fixedOverrides=r.fixedOverrides||{};fixedKeys.forEach(k=>{delete r.fixedOverrides[k];r[k]=0});save();render()};
+ resetBtn.onclick=()=>{if(confirm('保存されている36か月分のデータと固定費設定を初期化しますか？')){const startYM=[...state.startYM];state={data:{},fixedHistory:[],startYM};ensureJourneyData();currentYear=startYM[0];currentMonth=startYM[1];save();render()}};
+ [simSales,simFood,simLabor,simMarketing,simOther].forEach(x=>x.addEventListener('input',renderSim));render()
+}
+function renderInputs(){const raw=rawRec(),r=effectiveRec(raw);document.querySelectorAll('[data-key]').forEach(el=>{el.value=r[el.dataset.key]||'';if(el.dataset.fixedKey){const w=document.querySelector(`[data-fixed-wrap="${el.dataset.fixedKey}"]`);w?.classList.toggle('override',!!raw.fixedOverrides?.[el.dataset.fixedKey])}});monthNote.value=raw.note||'';const f=fixedAt();fixedSummary.innerHTML=`<strong>${currentYear}年${currentMonth}月の固定費：</strong> 地代家賃 ${money(f.rent)} ／ 減価償却費 ${money(f.depreciation)} ／ 通信費 ${money(f.communications)} <br><span style="color:#7a897f">固定費設定は選択中の月から先へ適用。過去月は変わりません。直接変更した月は月別上書きになります。</span>`}
+
+function signedMoney(v){return `${v>0?'+':v<0?'−':''}${money(Math.abs(v))}`}
+function signedPt(v){return `${v>0?'+':v<0?'−':''}${Math.abs(v).toFixed(1)}pt`}
+function varianceClass(delta, direction='higher'){
+  if(Math.abs(delta)<0.0001)return 'neutral-card';
+  const good=direction==='higher'?delta>0:delta<0;
+  return good?'good-card':'bad-card';
+}
+function renderBudgetVariance(a,b){
+  const section=document.getElementById('budgetVarianceSection');
+  const grid=document.getElementById('budgetVarianceGrid');
+  const summary=document.getElementById('budgetVarianceSummary');
+  if(!section||!grid||!summary)return;
+  if(currentMode!=='actual'){
+    section.style.display='none';
+    return;
+  }
+  const hasBudget=[b.sales,b.food,b.labor,b.profit,b.sga].some(v=>Math.abs(v)>0);
+  if(!hasBudget){
+    section.style.display='block';
+    grid.innerHTML='<div class="empty-note" style="grid-column:1/-1">この月の予算を入力すると、実績との差がここに表示されます。</div>';
+    summary.textContent='先に「予算」モードで月予算を作成してください。予算は実績を入力しても書き換わりません。';
+    return;
+  }
+  section.style.display='block';
+  const items=[
+    {name:'売上高',d:a.sales-b.sales,fmt:signedMoney,dir:'higher',sub:`予算 ${money(b.sales)} → 実績 ${money(a.sales)}`},
+    {name:'原価率',d:a.foodRate-b.foodRate,fmt:signedPt,dir:'lower',sub:`予算 ${pct(b.foodRate)} → 実績 ${pct(a.foodRate)}`},
+    {name:'人件費率',d:a.laborRate-b.laborRate,fmt:signedPt,dir:'lower',sub:`予算 ${pct(b.laborRate)} → 実績 ${pct(a.laborRate)}`},
+    {name:'FL率',d:a.flRate-b.flRate,fmt:signedPt,dir:'lower',sub:`予算 ${pct(b.flRate)} → 実績 ${pct(a.flRate)}`},
+    {name:'営業利益',d:a.profit-b.profit,fmt:signedMoney,dir:'higher',sub:`予算 ${money(b.profit)} → 実績 ${money(a.profit)}`},
+    {name:'営業利益率',d:a.profitRate-b.profitRate,fmt:signedPt,dir:'higher',sub:`予算 ${pct(b.profitRate)} → 実績 ${pct(a.profitRate)}`}
+  ];
+  grid.innerHTML=items.map(x=>`<div class="variance-card ${varianceClass(x.d,x.dir)}"><span>${x.name}</span><strong>${x.fmt(x.d)}</strong><small>${x.sub}</small></div>`).join('');
+
+  const profitGap=a.profit-b.profit;
+  const clues=[];
+  if(a.sales-b.sales<0)clues.push('売上');
+  if(a.foodRate-b.foodRate>0.05)clues.push('原価率');
+  if(a.laborRate-b.laborRate>0.05)clues.push('人件費率');
+  if(profitGap<0){
+    summary.innerHTML=`営業利益は予算を <strong class="bad">${signedMoney(profitGap)}</strong> 下回っています。${clues.length?`まず <strong>${clues.join('・')}</strong> の差を確認してみましょう。`:'各経費の予算差を順番に確認してみましょう。'}`;
+  }else if(profitGap>0){
+    summary.innerHTML=`営業利益は予算を <strong class="good">${signedMoney(profitGap)}</strong> 上回っています。何が良かったのかを確認し、再現できる要因を残しておきましょう。`;
+  }else{
+    summary.textContent='営業利益は予算と同水準です。売上・原価率・人件費率の中身も確認してみましょう。';
+  }
+}
+
+function renderMonthly(){const r=rec(),c=calc(r),a=calc(rec(currentYear,currentMonth,'actual')),b=calc(rec(currentYear,currentMonth,'budget')),py=state.data[currentYear-1]?.[currentMonth]?.actual,p=py?calc(rec(currentYear-1,currentMonth,'actual')):null;heroLabel.textContent=currentMode==='actual'?'今月の営業利益':'今月の営業利益予算';heroProfit.textContent=money(c.profit);heroProfitRate.textContent=`営業利益率 ${pct(c.profitRate)}`;heroSales.textContent=money(c.sales);heroFL.textContent=pct(c.flRate);heroSalesPerHour.textContent=c.sph?money(c.sph):'—';heroBudget.textContent=currentMode==='actual'&&b.sales?`予算比 売上 ${(a.sales/b.sales*100).toFixed(1)}%`:'予算比 —';heroYoY.textContent=currentMode==='actual'&&p&&p.sales?`昨対 売上 ${(a.sales/p.sales*100).toFixed(1)}%`:'昨対 —';renderBudgetVariance(a,b);modeNote.innerHTML=currentMode==='actual'?'<strong>実績入力：</strong>確定した実際の数字を入力します。率や営業利益は自動計算します。':'<strong>予算入力：</strong>その月に目指す計画数字を入力します。年間計画へ自動集計されます。';avgSpendKpi.textContent=c.avgSpend?money(c.avgSpend):'—';sphKpi.textContent=c.sph?money(c.sph):'—';foodRate.textContent=pct(c.foodRate);laborRate.textContent=pct(c.laborRate);flRate.textContent=pct(c.flRate);profitRate.textContent=pct(c.profitRate);coachText.textContent=coach(c);const plRows=[
+['売上高',c.sales,'bold',c.sales?100:0],
+['売上原価',-c.food,'',c.foodRate],
+['売上総利益',c.gross,'bold',c.grossRate],
+['人件費',-c.labor,'',c.laborRate],
+['広告宣伝費',-c.advertising,'',c.sales?c.advertising/c.sales*100:0],
+['販売促進費',-c.promotion,'',c.sales?c.promotion/c.sales*100:0],
+['消耗品費',-c.supplies,'',c.sales?c.supplies/c.sales*100:0],
+['水道光熱費',-c.utilities,'',c.sales?c.utilities/c.sales*100:0],
+['地代家賃',-c.rent,'',c.sales?c.rent/c.sales*100:0],
+['設備費',-c.equipment,'',c.sales?c.equipment/c.sales*100:0],
+['修繕費',-c.repairs,'',c.sales?c.repairs/c.sales*100:0],
+['減価償却費',-c.depreciation,'',c.sales?c.depreciation/c.sales*100:0],
+['通信費',-c.communications,'',c.sales?c.communications/c.sales*100:0],
+['その他',-c.other,'',c.sales?c.other/c.sales*100:0],
+['販売費及び一般管理費 計',-c.sga,'bold',c.sales?c.sga/c.sales*100:0],
+['営業利益',c.profit,'bold profit',c.profitRate]
+];
+plTable.innerHTML=plRows.map(([n,v,cl,rate])=>`<div class="plrow ${cl}"><span>${n}</span><span class="plval"><strong>${v<0?'−':''}${money(Math.abs(v))}</strong><em class="plpct">${rate.toFixed(1)}%</em></span></div>`).join('');kpiGross.textContent=pct(c.grossRate);kpiFL.textContent=pct(c.flRate);kpiSPH.textContent=c.sph?money(c.sph):'—';kpiBEP.textContent='次版で精緻化'}
+function coach(c){if(!c.sales)return 'まずは売上高から実際の数字を入力してみましょう。入力した数字がそのままPLとKPIにつながります。';if(c.profit<0)return '営業利益がマイナスです。売上だけでなく、原価率・人件費率・固定的な経費のどこに要因があるか順番に見てみましょう。';if(c.flRate>65)return 'FL率が高めです。ただし、単純に人や食材を削る前に、ロス・生産性・客単価・売上との関係を確認してみましょう。';return '利益が出ています。次は「なぜこの利益になったのか」を予算・昨対と比べて確認してみましょう。'}
+function annualTotals(y,mode){return months.reduce((a,m)=>{const c=calc(rec(y,m,mode));a.sales+=c.sales;a.profit+=c.profit;return a},{sales:0,profit:0})}
+function renderAnnual(){const prev=state.data[currentYear-1];const rows=months.map(m=>{const b=calc(rec(currentYear,m,'budget')),a=calc(rec(currentYear,m,'actual')),p=prev?calc(rec(currentYear-1,m,'actual')):null;const yoy=p&&p.sales?a.sales/p.sales*100:0;return `<tr><td>${m}月</td><td>${p&&p.sales?money(p.sales):'—'}</td><td>${money(b.sales)}</td><td>${money(a.sales)}</td><td>${b.sales?pct(a.sales/b.sales*100):'—'}</td><td>${yoy?pct(yoy):'—'}</td><td>${money(b.profit)}</td><td>${money(a.profit)}</td><td><strong class="${a.profit-b.profit>=0?'good':'bad'}">${a.profit-b.profit>=0?'+':''}${money(a.profit-b.profit)}</strong></td></tr>`}).join(''),bt=annualTotals(currentYear,'budget'),at=annualTotals(currentYear,'actual');annualBudgetSales.textContent=money(bt.sales);annualBudgetProfit.textContent=money(bt.profit);annualBudgetRate.textContent=pct(bt.sales?bt.profit/bt.sales*100:0);annualTable.innerHTML=`<thead><tr><th>月</th><th>前年売上</th><th>売上予算</th><th>売上実績</th><th>予算比</th><th>昨対</th><th>利益予算</th><th>利益実績</th><th>利益差</th></tr></thead><tbody>${rows}<tr><td><strong>年間</strong></td><td>—</td><td><strong>${money(bt.sales)}</strong></td><td><strong>${money(at.sales)}</strong></td><td><strong>${bt.sales?pct(at.sales/bt.sales*100):'—'}</strong></td><td>—</td><td><strong>${money(bt.profit)}</strong></td><td><strong>${money(at.profit)}</strong></td><td><strong>${money(at.profit-bt.profit)}</strong></td></tr></tbody>`}
+function cls(v){return v>=0?'good':'bad'}
+function renderCompare(){
+  const metricEl=document.getElementById('trendMetric');
+  const periodEl=document.getElementById('trendPeriod');
+  const chartEl=document.getElementById('trendChart');
+  const tableEl=document.getElementById('trendTable');
+  const coachEl=document.getElementById('compareCoach');
+  const actualTableEl=document.getElementById('trendActualTable');
+  if(!metricEl||!periodEl||!chartEl||!tableEl||!coachEl||!actualTableEl)return;
+
+  const metric=metricEl.value||'sales', period=+(periodEl.value||12);
+  const defs={
+    sales:['売上高','money'],food:['売上原価','money'],foodRate:['原価率','pct'],
+    labor:['人件費','money'],laborRate:['人件費率','pct'],flRate:['FL率','pct'],
+    gross:['売上総利益','money'],sga:['販管費','money'],profit:['営業利益','money'],profitRate:['営業利益率','pct']
+  };
+  const [label,type]=defs[metric];
+  const [sy,sm]=state.startYM;
+  const upto=Math.min(36,Math.max(1,journeyMonthNo(currentYear,currentMonth)));
+  const first=Math.max(0,upto-period);
+  const points=[];
+
+  for(let i=first;i<upto;i++){
+    const [y,m]=ymAdd(sy,sm,i);
+    const c=calc(rec(y,m,'actual'));
+    points.push({y,m,v:c[metric]||0,c});
+  }
+
+  const max=Math.max(...points.map(p=>Math.abs(p.v)),1);
+  chartEl.innerHTML=`<div style="height:190px;display:flex;align-items:flex-end;gap:5px;padding:12px 5px 24px;border-bottom:1px solid #dde3de;overflow:hidden">${
+    points.map((p,i)=>{
+      const h=Math.max(3,Math.abs(p.v)/max*145);
+      const value=type==='money'?money(p.v):p.v.toFixed(1)+'%';
+      return `<div title="${p.y}/${p.m} ${value}" style="flex:1;min-width:4px;height:${h}px;background:${p.v<0?'#a84a4a':'#1d604b'};border-radius:5px 5px 2px 2px;position:relative"><span style="position:absolute;bottom:-19px;left:50%;transform:translateX(-50%);font-size:8px;color:#718078">${(i===0||p.m===1||i===points.length-1)?p.m+'月':''}</span></div>`;
+    }).join('')
+  }</div>`;
+
+
+
+  // The chart follows the selected 12/24/36 month period.
+  // The numeric evidence below is intentionally fixed to the latest 12 months.
+  const latest12=[];
+  const latestCount=Math.min(12,upto);
+  const latestStart=Math.max(0,upto-latestCount);
+  for(let i=latestStart;i<upto;i++){
+    const [y,m]=ymAdd(sy,sm,i);
+    latest12.push({y,m,c:calc(rec(y,m,'actual'))});
+  }
+
+  const valueFor=(p)=>{
+    if(metric==='sales') return p.c.sales;
+    if(metric==='food') return p.c.food;
+    if(metric==='foodRate') return p.c.foodRate;
+    if(metric==='labor') return p.c.labor;
+    if(metric==='laborRate') return p.c.laborRate;
+    if(metric==='flRate') return p.c.flRate;
+    if(metric==='gross') return p.c.gross;
+    if(metric==='sga') return p.c.sga;
+    if(metric==='profit') return p.c.profit;
+    if(metric==='profitRate') return p.c.profitRate;
+    return 0;
+  };
+
+  const pairInfo=(p)=>{
+    if(metric==='labor') return ['人件費率',p.c.laborRate.toFixed(1)+'%'];
+    if(metric==='food') return ['原価率',p.c.foodRate.toFixed(1)+'%'];
+    if(metric==='profit') return ['利益率',p.c.profitRate.toFixed(1)+'%'];
+    if(metric==='sales') return ['営業利益',money(p.c.profit)];
+    if(metric==='gross') return ['粗利率',p.c.grossRate.toFixed(1)+'%'];
+    if(metric==='sga') return ['販管費率',(p.c.sales?p.c.sga/p.c.sales*100:0).toFixed(1)+'%'];
+    if(metric==='foodRate') return ['原価額',money(p.c.food)];
+    if(metric==='laborRate') return ['人件費',money(p.c.labor)];
+    if(metric==='flRate') return ['原価率 / 人件費率',p.c.foodRate.toFixed(1)+'% / '+p.c.laborRate.toFixed(1)+'%'];
+    if(metric==='profitRate') return ['営業利益',money(p.c.profit)];
+    return ['参考','—'];
+  };
+
+  const [pairLabel]=latest12.length?pairInfo(latest12[0]):['参考','—'];
+  actualTableEl.innerHTML=`<table class="trend-actual-table">
+    <thead><tr><th>月</th><th>${label}</th><th>${pairLabel}</th></tr></thead>
+    <tbody>${latest12.slice().reverse().map((p,idx)=>{
+      const v=valueFor(p);
+      const display=type==='money'?money(v):v.toFixed(1)+'%';
+      const [,pairValue]=pairInfo(p);
+      return `<tr class="${idx===0?'latest':''}"><td>${p.y}年${p.m}月</td><td>${display}</td><td>${pairValue}</td></tr>`;
+    }).join('')}</tbody>
+  </table>`;
+tableEl.innerHTML=`<table><thead><tr><th>月</th><th>${label}</th>${
+    metric==='labor'?'<th>人件費率</th>':metric==='food'?'<th>原価率</th>':metric==='profit'?'<th>利益率</th>':''
+  }</tr></thead><tbody>${
+    points.slice().reverse().map(p=>`<tr><td>${p.y}/${p.m}</td><td>${type==='money'?money(p.v):p.v.toFixed(1)+'%'}</td>${
+      metric==='labor'?`<td>${p.c.laborRate.toFixed(1)}%</td>`:metric==='food'?`<td>${p.c.foodRate.toFixed(1)}%</td>`:metric==='profit'?`<td>${p.c.profitRate.toFixed(1)}%</td>`:''
+    }</tr>`).join('')
+  }</tbody></table>`;
+
+  coachEl.textContent=points.some(p=>p.v!==0)
+    ? `${label}は上のグラフで長期傾向を、下の直近12か月実数で具体的な根拠を確認します。翌年の月予算を作るときは、前年同月の数字と率、その月のメモをセットで見てみましょう。`
+    : '実績を入力すると、グラフと直近12か月の実数がここに蓄積されます。';
+}
+function renderSim(){
+ const r={...rec(currentYear,currentMonth,'actual')},base=calc(r);
+ const context=`${currentYear}-${currentMonth}`;
+ const baseFoodRate=base.foodRate||0;
+ if(simFood.dataset.context!==context){
+   simFood.dataset.context=context;
+   simFood.value=Math.min(60,Math.max(0,baseFoodRate)).toFixed(1);
+ }
+ const salesP=+simSales.value/100;
+ const targetFoodRate=+simFood.value;
+ const laborP=+simLabor.value/100,marketingP=+simMarketing.value/100,otherP=+simOther.value/100;
+ const newSales=base.sales*salesP;
+ const newFood=Math.max(0,newSales*targetFoodRate/100);
+ const s={...r,sales:newSales,foodCost:newFood,laborCost:r.laborCost*laborP,
+   advertising:r.advertising*marketingP,promotion:r.promotion*marketingP,
+   supplies:r.supplies*otherP,utilities:r.utilities*otherP,equipment:r.equipment*otherP,
+   repairs:r.repairs*otherP,communications:r.communications*otherP,other:r.other*otherP};
+ const c=calc(s),d=c.profit-base.profit;
+ simBaseProfit.textContent=money(base.profit);
+ simProfit.textContent=money(c.profit);
+ simDelta.textContent=`${d>=0?'+':''}${money(d)}`;
+ simDelta.className=cls(d);
+ simSalesLabel.textContent=`${Math.round((salesP-1)*100)}%`;
+ simFoodLabel.textContent=`${baseFoodRate.toFixed(1)}% → ${targetFoodRate.toFixed(1)}%`;
+ simLaborLabel.textContent=`${Math.round((laborP-1)*100)}%`;
+ simMarketingLabel.textContent=`${Math.round((marketingP-1)*100)}%`;
+ simOtherLabel.textContent=`${Math.round((otherP-1)*100)}%`;
+
+ const impactSales=calc({...r,sales:newSales,foodCost:base.sales?newSales*baseFoodRate/100:r.foodCost}).profit-base.profit;
+ const impactFood=calc({...r,foodCost:Math.max(0,base.sales*targetFoodRate/100)}).profit-base.profit;
+ const impactLabor=calc({...r,laborCost:r.laborCost*laborP}).profit-base.profit;
+ const impactMarketing=calc({...r,advertising:r.advertising*marketingP,promotion:r.promotion*marketingP}).profit-base.profit;
+ const impactOther=calc({...r,supplies:r.supplies*otherP,utilities:r.utilities*otherP,equipment:r.equipment*otherP,repairs:r.repairs*otherP,communications:r.communications*otherP,other:r.other*otherP}).profit-base.profit;
+ impactList.innerHTML=[
+   ['売上',impactSales],
+   [`原価率 ${baseFoodRate.toFixed(1)}%→${targetFoodRate.toFixed(1)}%`,impactFood],
+   ['人件費',impactLabor],['広告・販促費',impactMarketing],['その他管理費',impactOther]
+ ].map(([n,v])=>`<div class="impact"><span>${n}の影響</span><strong class="${cls(v)}">${v>=0?'+':''}${money(v)}</strong></div>`).join('');
+}
+
+function monthRef(y,m,delta){return ymAdd(y,m,delta)}
+function comparisonRow(label,now,prev,yoy,type='money',lowerIsBetter=false){
+  const fmt=v=>type==='money'?money(v):pct(v), d1=now-prev,d2=now-yoy;
+  const df=v=>type==='money'?signedMoney(v):signedPt(v);
+  const good=v=>Math.abs(v)<0.0001?'':((lowerIsBetter?v<0:v>0)?'good':'bad');
+  return `<tr><td>${label}</td><td>${fmt(now)}</td><td>${fmt(prev)}</td><td class="${good(d1)}">${df(d1)}</td><td>${fmt(yoy)}</td><td class="${good(d2)}">${df(d2)}</td></tr>`;
+}
+function plComparisonCell(v,sales){return `<strong>${money(v)}</strong><span class="rate">${sales?pct(v/sales*100):'—'}</span>`}
+function reportPLRows(a,b,p,y){
+ const rows=[
+  {section:'売上・粗利益'},
+  {name:'売上高',key:'sales',higher:true,total:true},
+  {name:'売上原価',key:'food',higher:false},
+  {name:'売上総利益',key:'gross',higher:true,total:true},
+  {section:'人件費・販売管理費'},
+  {name:'人件費',key:'labor',higher:false},
+  {name:'広告宣伝費',key:'advertising',higher:false},
+  {name:'販売促進費',key:'promotion',higher:false},
+  {name:'消耗品費',key:'supplies',higher:false},
+  {name:'水道光熱費',key:'utilities',higher:false},
+  {name:'地代家賃',key:'rent',higher:false},
+  {name:'設備費',key:'equipment',higher:false},
+  {name:'修繕費',key:'repairs',higher:false},
+  {name:'減価償却費',key:'depreciation',higher:false},
+  {name:'通信費',key:'communications',higher:false},
+  {name:'その他',key:'other',higher:false},
+  {name:'販管費合計',key:'sga',higher:false,total:true},
+  {section:'利益'},
+  {name:'営業利益',key:'profit',higher:true,profit:true}
+ ];
+ return rows.map(r=>{
+  if(r.section)return `<tr class="section-row"><td colspan="8">${r.section}</td></tr>`;
+  const nv=a[r.key],bv=b[r.key],pv=p[r.key],yv=y[r.key],bd=nv-bv,pd=nv-pv,yd=nv-yv;
+  const klass=d=>Math.abs(d)<1?'':((r.higher?d>0:d<0)?'good':'bad');
+  return `<tr class="${r.profit?'profit-row':r.total?'total-row':''}"><td>${r.name}</td><td>${plComparisonCell(nv,a.sales)}</td><td>${plComparisonCell(bv,b.sales)}</td><td class="${klass(bd)}">${signedMoney(bd)}</td><td>${plComparisonCell(pv,p.sales)}</td><td class="${klass(pd)}">${signedMoney(pd)}</td><td>${plComparisonCell(yv,y.sales)}</td><td class="${klass(yd)}">${signedMoney(yd)}</td></tr>`;
+ }).join('');
+}
+function detectFindings(a,b,p,y){
+ const items=[
+  ['売上高','sales',true],['売上原価','food',false],['人件費','labor',false],['広告宣伝費','advertising',false],['販売促進費','promotion',false],['消耗品費','supplies',false],['水道光熱費','utilities',false],['地代家賃','rent',false],['設備費','equipment',false],['修繕費','repairs',false],['減価償却費','depreciation',false],['通信費','communications',false],['その他','other',false],['営業利益','profit',true]
+ ];
+ let out=[];
+ for(const [name,key,higher] of items){
+  const now=a[key];
+  for(const [base,label] of [[b,'予算'],[p,'先月'],[y,'前年同月']]){
+   const old=base[key]; if(!old||!Number.isFinite(old))continue;
+   const rate=(now-old)/Math.abs(old)*100;
+   const abs=Math.abs(now-old);
+   if(Math.abs(rate)>=10 && abs>=10000){
+    const favorable=higher?rate>0:rate<0;
+    out.push({score:Math.abs(rate),text:`${name}が${label}比 ${rate>0?'+':''}${rate.toFixed(1)}%（${signedMoney(now-old)}）。${favorable?'良化要因を再現できるか確認':'原因を決めつけず、営業条件・設備・運用・計上時期を確認'}。`});
+   }
+  }
+ }
+ const rateItems=[['原価率','foodRate',false],['人件費率','laborRate',false],['FL率','flRate',false],['営業利益率','profitRate',true]];
+ for(const [name,key,higher] of rateItems){
+  for(const [base,label] of [[b,'予算'],[p,'先月'],[y,'前年同月']]){
+   const d=a[key]-base[key]; if(Math.abs(d)>=1.0){const favorable=higher?d>0:d<0;out.push({score:Math.abs(d)*8,text:`${name}が${label}比 ${signedPt(d)}。${favorable?'改善要因を確認し、継続可能か検証':'売上構成・原価・シフト・経費のどこで変化したか分解'}。`})}
+  }
+ }
+ out.sort((x,z)=>z.score-x.score);
+ return out.slice(0,8);
+}
+function renderReport(){
+  const a=calc(rec(currentYear,currentMonth,'actual')), b=calc(rec(currentYear,currentMonth,'budget'));
+  const [py,pm]=monthRef(currentYear,currentMonth,-1), p=calc(rec(py,pm,'actual'));
+  const y=calc(rec(currentYear-1,currentMonth,'actual'));
+  const label=document.getElementById('reportPeriodLabel');if(!label)return;
+  label.textContent=`${currentYear}年${currentMonth}月`;
+  const budgetRate=b.sales?a.sales/b.sales*100:0;
+  document.getElementById('reportKpis').innerHTML=[
+    ['売上高',money(a.sales),b.sales?`予算比 ${pct(budgetRate)}`:'予算未入力'],
+    ['営業利益',money(a.profit),`利益率 ${pct(a.profitRate)}`],
+    ['FL率',pct(a.flRate),`原価 ${pct(a.foodRate)} / 人件費 ${pct(a.laborRate)}`],
+    ['人時売上',a.sph?money(a.sph):'—','総労働時間入力時']
+  ].map(x=>`<div class="report-kpi"><span>${x[0]}</span><strong>${x[1]}</strong><small>${x[2]}</small></div>`).join('');
+  document.getElementById('reportCompare').innerHTML=`<table><thead><tr><th>PL科目</th><th>今月</th><th>予算</th><th>予算差</th><th>先月</th><th>先月差</th><th>前年同月</th><th>前年差</th></tr></thead><tbody>${reportPLRows(a,b,p,y)}</tbody></table>`;
+  const findings=detectFindings(a,b,p,y), box=document.getElementById('aiFindings');
+  if(box)box.innerHTML=findings.length?findings.map((f,i)=>`<div class="ai-finding"><span class="ai-rank">${i+1}</span><div><b>確認ポイント</b><br>${f.text}</div></div>`).join(''):`<div class="ai-finding"><div><b>大きな変化は未検出</b><br>入力済みデータの範囲では、10%以上かつ1万円以上の変化はありません。未入力月がある場合は比較精度が下がります。</div></div>`;
+  const rr=rawRec(currentYear,currentMonth,'actual');
+  ['reportGood','reportIssue','reportAction'].forEach(id=>{const el=document.getElementById(id);if(el&&document.activeElement!==el)el.value=rr[id]||''});
+}
+function buildAIAnalysisText(){
+ const a=calc(rec(currentYear,currentMonth,'actual')),b=calc(rec(currentYear,currentMonth,'budget')),[py,pm]=monthRef(currentYear,currentMonth,-1),p=calc(rec(py,pm,'actual')),y=calc(rec(currentYear-1,currentMonth,'actual')),rr=rawRec(currentYear,currentMonth,'actual');
+ const rows=[['売上高','sales'],['売上原価','food'],['売上総利益','gross'],['人件費','labor'],['広告宣伝費','advertising'],['販売促進費','promotion'],['消耗品費','supplies'],['水道光熱費','utilities'],['地代家賃','rent'],['設備費','equipment'],['修繕費','repairs'],['減価償却費','depreciation'],['通信費','communications'],['その他','other'],['販管費合計','sga'],['営業利益','profit']];
+ const lines=rows.map(([n,k])=>`${n}: 今月 ${Math.round(a[k])}円 / 予算 ${Math.round(b[k])}円 / 先月 ${Math.round(p[k])}円 / 前年同月 ${Math.round(y[k])}円`).join('\n');
+ return `あなたは飲食店のPL分析担当です。寄り添いや励ましを優先せず、数字の比較から違和感を抽出してください。原因を断定せず、事実・推測・仮説・検証を明確に分けてください。\n\n【対象】${currentYear}年${currentMonth}月\n【分析手順】\n1. 事実：予算・先月・前年同月との差を整理\n2. 違和感：売上との連動が弱い費用、率と額の不整合、複数指標の矛盾を抽出\n3. 推測：数字を根拠に考えられる方向性を示す\n4. 仮説：原因候補を優先順位付きで最大5つ\n5. 検証：現場・請求書・シフト・設備・営業条件で確認する項目\n6. 改善：店長が翌月に実行できる行動を最大3つ\n7. 見落とし：データ不足や判断できない点も明記\n\n【PL比較】\n${lines}\n\n【率】\n原価率: 今月 ${a.foodRate.toFixed(1)}% / 予算 ${b.foodRate.toFixed(1)}% / 先月 ${p.foodRate.toFixed(1)}% / 前年 ${y.foodRate.toFixed(1)}%\n人件費率: 今月 ${a.laborRate.toFixed(1)}% / 予算 ${b.laborRate.toFixed(1)}% / 先月 ${p.laborRate.toFixed(1)}% / 前年 ${y.laborRate.toFixed(1)}%\nFL率: 今月 ${a.flRate.toFixed(1)}% / 予算 ${b.flRate.toFixed(1)}% / 先月 ${p.flRate.toFixed(1)}% / 前年 ${y.flRate.toFixed(1)}%\n営業利益率: 今月 ${a.profitRate.toFixed(1)}% / 予算 ${b.profitRate.toFixed(1)}% / 先月 ${p.profitRate.toFixed(1)}% / 前年 ${y.profitRate.toFixed(1)}%\n\n【営業データ】\n客数: ${num(rr.customers)} / 総労働時間: ${num(rr.totalHours)} / 客単価: ${Math.round(a.avgSpend)}円 / 人時売上: ${Math.round(a.sph)}円\n\n【現場メモ】\n${rr.note||'未入力'}\n\n出力は「事実」「違和感」「推測」「仮説」「検証項目」「翌月アクション」の順にしてください。`;
+}
+async function copyAIAnalysis(){
+ const text=buildAIAnalysisText(),status=document.getElementById('copyStatus');
+ try{await navigator.clipboard.writeText(text);if(status)status.textContent='コピーしました';}
+ catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();if(status)status.textContent='コピーしました';}
+ setTimeout(()=>{if(status)status.textContent=''},2200);
+}
+function applyExportPreset(name){
+  const sets={light:['summary','compare','pl','comments'],monthly:['summary','compare','pl','budget','comments','note'],annual:['summary','annual','trend','comments','note']};
+  document.querySelectorAll('[data-export]').forEach(x=>x.checked=(sets[name]||[]).includes(x.dataset.export));
+}
+function selectedExports(){return [...document.querySelectorAll('[data-export]:checked')].map(x=>x.dataset.export)}
+function plPrintTable(c){
+ const rows=[['売上高',c.sales],['売上原価',c.food],['売上総利益',c.gross],['人件費',c.labor],['広告宣伝費',c.advertising],['販売促進費',c.promotion],['消耗品費',c.supplies],['水道光熱費',c.utilities],['地代家賃',c.rent],['設備費',c.equipment],['修繕費',c.repairs],['減価償却費',c.depreciation],['通信費',c.communications],['その他',c.other],['販管費',c.sga],['営業利益',c.profit]];
+ return `<table><thead><tr><th>科目</th><th>金額</th><th>売上比</th></tr></thead><tbody>${rows.map(([n,v])=>`<tr><td>${n}</td><td>${money(v)}</td><td>${c.sales?pct(v/c.sales*100):'—'}</td></tr>`).join('')}</tbody></table>`;
+}
+function preparePrint(){
+ const picks=selectedExports(), a=calc(rec(currentYear,currentMonth,'actual')),b=calc(rec(currentYear,currentMonth,'budget')),[py,pm]=monthRef(currentYear,currentMonth,-1),p=calc(rec(py,pm,'actual')),y=calc(rec(currentYear-1,currentMonth,'actual')),rr=rawRec(currentYear,currentMonth,'actual');
+ let html=`<h1>PROFIT SHIFT</h1><div>${currentYear}年${currentMonth}月 月次レポート</div>`;
+ if(picks.includes('summary'))html+=`<h2>今月サマリー</h2><div class="print-kpis">${[['売上',money(a.sales)],['営業利益',money(a.profit)],['利益率',pct(a.profitRate)],['FL率',pct(a.flRate)]].map(x=>`<div class="print-card"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('')}</div>`;
+ if(picks.includes('compare'))html+=`<h2>PL全科目比較</h2><table><thead><tr><th>項目</th><th>今月</th><th>予算</th><th>先月</th><th>前年同月</th></tr></thead><tbody>${[['売上高','sales'],['売上原価','food'],['売上総利益','gross'],['人件費','labor'],['広告宣伝費','advertising'],['販売促進費','promotion'],['消耗品費','supplies'],['水道光熱費','utilities'],['地代家賃','rent'],['設備費','equipment'],['修繕費','repairs'],['減価償却費','depreciation'],['通信費','communications'],['その他','other'],['販管費合計','sga'],['営業利益','profit']].map(r=>`<tr><td>${r[0]}</td><td>${money(a[r[1]])}</td><td>${money(b[r[1]])}</td><td>${money(p[r[1]])}</td><td>${money(y[r[1]])}</td></tr>`).join('')}</tbody></table>`;
+ if(picks.includes('pl'))html+=`<h2>月次PL</h2>${plPrintTable(a)}`;
+ if(picks.includes('budget'))html+=`<h2>予算・実績・差異</h2><table><thead><tr><th>項目</th><th>予算</th><th>実績</th><th>差異</th></tr></thead><tbody>${[['売上',b.sales,a.sales],['原価率',b.foodRate,a.foodRate,'p'],['人件費率',b.laborRate,a.laborRate,'p'],['FL率',b.flRate,a.flRate,'p'],['営業利益',b.profit,a.profit]].map(r=>`<tr><td>${r[0]}</td><td>${r[3]?pct(r[1]):money(r[1])}</td><td>${r[3]?pct(r[2]):money(r[2])}</td><td>${r[3]?signedPt(r[2]-r[1]):signedMoney(r[2]-r[1])}</td></tr>`).join('')}</tbody></table>`;
+ if(picks.includes('annual')){const rows=months.map(m=>{const c=calc(rec(currentYear,m,'actual')),bb=calc(rec(currentYear,m,'budget'));return `<tr><td>${m}月</td><td>${money(bb.sales)}</td><td>${money(c.sales)}</td><td>${money(c.profit)}</td></tr>`}).join('');html+=`<h2>年間計画・実績</h2><table><thead><tr><th>月</th><th>売上予算</th><th>売上実績</th><th>営業利益</th></tr></thead><tbody>${rows}</tbody></table>`}
+ if(picks.includes('trend')){let rows='';for(let i=11;i>=0;i--){const [yy,mm]=monthRef(currentYear,currentMonth,-i),c=calc(rec(yy,mm,'actual'));rows+=`<tr><td>${yy}年${mm}月</td><td>${money(c.sales)}</td><td>${pct(c.flRate)}</td><td>${money(c.profit)}</td></tr>`}html+=`<h2>直近12か月実績</h2><table><thead><tr><th>月</th><th>売上</th><th>FL率</th><th>営業利益</th></tr></thead><tbody>${rows}</tbody></table>`}
+ if(picks.includes('comments'))html+=`<h2>店長コメント</h2><p><b>良かったこと：</b>${escapeHtml(rr.reportGood||'')}</p><p><b>課題：</b>${escapeHtml(rr.reportIssue||'')}</p><p><b>来月やること：</b>${escapeHtml(rr.reportAction||'')}</p>`;
+ if(picks.includes('note'))html+=`<h2>月次メモ</h2><p>${escapeHtml(rr.note||'')}</p>`;
+ document.getElementById('reportPrintArea').innerHTML=html;
+}
+window.addEventListener('beforeprint',preparePrint);
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function downloadText(name,text,type){const b=new Blob([text],{type}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)}
+function exportCurrentMonthCSV(){
+ const a=calc(rec(currentYear,currentMonth,'actual')),b=calc(rec(currentYear,currentMonth,'budget')),rr=rawRec(currentYear,currentMonth,'actual');
+ const rows=[['年度',currentYear],['月',currentMonth],['売上実績',a.sales],['売上予算',b.sales],['売上原価',a.food],['売上総利益',a.gross],['原価率',a.foodRate],['人件費',a.labor],['人件費率',a.laborRate],['広告宣伝費',a.advertising],['販売促進費',a.promotion],['消耗品費',a.supplies],['水道光熱費',a.utilities],['地代家賃',a.rent],['設備費',a.equipment],['修繕費',a.repairs],['減価償却費',a.depreciation],['通信費',a.communications],['その他',a.other],['FL率',a.flRate],['販管費',a.sga],['営業利益',a.profit],['営業利益率',a.profitRate],['客数',num(rr.customers)],['総労働時間',num(rr.totalHours)],['良かったこと',rr.reportGood||''],['課題',rr.reportIssue||''],['来月やること',rr.reportAction||''],['月次メモ',rr.note||'']];
+ const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');downloadText(`profit_shift_${currentYear}_${String(currentMonth).padStart(2,'0')}.csv`,csv,'text/csv;charset=utf-8');
+}
+function exportBackupJSON(){downloadText(`profit_shift_backup_${new Date().toISOString().slice(0,10)}.json`,JSON.stringify({app:'PROFIT SHIFT',version:25,exportedAt:new Date().toISOString(),state},null,2),'application/json')}
+
+
+function utf8ToBase64Url(str){
+  const bytes=new TextEncoder().encode(str);
+  let bin='';
+  bytes.forEach(b=>bin+=String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function base64UrlToUtf8(str){
+  str=str.replace(/-/g,'+').replace(/_/g,'/');
+  while(str.length%4)str+='=';
+  const bin=atob(str),bytes=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function sharedReportCss(){return `
+  *{box-sizing:border-box}body{margin:0;background:#f3f9fc;color:#173247;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+  .shared-wrap{max-width:980px;margin:0 auto;padding:20px}.shared-head{background:linear-gradient(145deg,#2389b6,#55bce0);color:white;border-radius:24px;padding:22px;margin-bottom:14px}
+  .shared-head small{font-weight:900;letter-spacing:.18em}.shared-head h1{margin:5px 0 3px;font-size:28px}.shared-head p{margin:0;opacity:.9}
+  .shared-card{background:white;border:1px solid #dcecf3;border-radius:22px;padding:18px;box-shadow:0 8px 26px rgba(35,117,153,.06)}
+  h2{font-size:18px;margin:20px 0 8px;color:#174f68}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:8px;border-bottom:1px solid #e5eef2;text-align:right}th:first-child,td:first-child{text-align:left}
+  .print-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.print-card{background:#eef8fb;border-radius:14px;padding:12px}.print-card span{display:block;font-size:11px;color:#607985}.print-card strong{display:block;font-size:20px;margin-top:4px}
+  p{line-height:1.7}.shared-note{font-size:11px;color:#718797;margin-top:12px}@media(max-width:600px){.shared-wrap{padding:10px}.shared-card{padding:13px;overflow-x:auto}.shared-head{border-radius:18px;padding:17px}table{min-width:720px}.print-kpis{grid-template-columns:1fr 1fr}}
+`;}
+function buildSharePayload(){
+  preparePrint();
+  const html=document.getElementById('reportPrintArea').innerHTML;
+  return {v:1,title:`${currentYear}年${currentMonth}月 レポート`,createdAt:new Date().toISOString(),html};
+}
+async function shareReportLink(){
+  const status=document.getElementById('copyStatus');
+  if(!/^https?:$/.test(location.protocol)){
+    if(status)status.textContent='Web公開後に利用できます';
+    alert('レポート共有は、GitHub PagesなどでWeb公開した後に利用できます。');
+    setTimeout(()=>{if(status)status.textContent=''},3000);
+    return;
+  }
+  try{
+    const payload=buildSharePayload();
+    const encoded=utf8ToBase64Url(JSON.stringify(payload));
+    const url=`${location.origin}${location.pathname}#report=${encoded}`;
+    if(navigator.share){
+      await navigator.share({title:payload.title,text:'PROFIT SHIFT レポート',url});
+      if(status)status.textContent='共有しました';
+    }else{
+      showShareUrl(url);
+      if(status)status.textContent='共有リンクを作成しました';
+    }
+  }catch(e){
+    console.error(e);
+    if(e&&e.name==='AbortError')return;
+    alert('共有リンクを作成できませんでした。');
+  }
+  setTimeout(()=>{if(status)status.textContent=''},2500);
+}
+function showShareUrl(url){
+  let d=document.getElementById('shareUrlDialog');
+  if(!d){
+    d=document.createElement('dialog');d.id='shareUrlDialog';
+    d.innerHTML='<h3 style="margin:0 0 8px">共有リンク</h3><p style="font-size:12px;line-height:1.6">リンクを長押ししてコピーしてください。</p><textarea id="shareUrlText" readonly style="width:100%;min-height:120px;border:1px solid #dcecf3;border-radius:12px;padding:10px"></textarea><button type="button" id="closeShareUrl" style="margin-top:10px">閉じる</button>';
+    document.body.appendChild(d);document.getElementById('closeShareUrl').onclick=()=>d.close();
+  }
+  document.getElementById('shareUrlText').value=url;d.showModal();
+}
+function renderSharedReportFromHash(){
+  if(!location.hash.startsWith('#report='))return false;
+  try{
+    const payload=JSON.parse(base64UrlToUtf8(location.hash.slice(8)));
+    document.body.innerHTML=`<div class="shared-wrap"><div class="shared-head"><small>PROFIT SHIFT / SHARED REPORT</small><h1>${escapeHtml(payload.title||'共有レポート')}</h1><p>閲覧用レポート</p></div><div class="shared-card">${payload.html||''}</div><div class="shared-note">このページは共有時点のスナップショットです。元データは変更されません。</div></div>`;
+    const st=document.createElement('style');st.textContent=sharedReportCss();document.head.appendChild(st);
+    return true;
+  }catch(e){console.error(e);return false}
+}
+
+function render(){
+ensureJourneyData();
+const [sy,sm]=state.startYM,[ey,em]=ymAdd(sy,sm,35);
+const journeyStatusEl=document.getElementById('journeyStatus');
+if(journeyStatusEl) journeyStatusEl.innerHTML=`<strong>${sy}年${sm}月</strong> → ${ey}年${em}月<br>${journeyLabel(currentYear,currentMonth)} / 36か月`;
+years=journeyYears();
+yearSelect.innerHTML=years.map(y=>`<option value="${y}">${y}年</option>`).join('');
+yearSelect.value=currentYear;
+monthSelect.innerHTML=months.map(m=>`<option value="${m}" ${inJourney(currentYear,m)?'':'disabled'}>${m}月</option>`).join('');
+monthSelect.value=currentMonth;
+renderInputs();renderMonthly();renderAnnual();renderCompare();renderSim();renderReport()}
+window.addEventListener('DOMContentLoaded',()=>{if(renderSharedReportFromHash())return;ensureJourneyData();init();});
+</script>
+
+<dialog id="startDialog">
+  <h3 style="margin:0 0 8px">利用開始月</h3>
+  <p>利用を開始した月を起点に、36か月分のデータを保存・比較します。</p>
+  <div class="fixed-grid">
+    <label>利用開始年<input id="startYear" type="number" min="2000" max="2100"></label>
+    <label>利用開始月
+      <select id="startMonth" style="width:100%;margin-top:5px;border:0;background:#f4f6f3;border-radius:12px;padding:11px;font-size:18px;font-weight:900"></select>
+    </label>
+  </div>
+  <button id="saveStartBtn">この年月から利用を開始</button>
+  <button id="cancelStartBtn" style="margin-top:7px;background:#e9eeea;color:#173f33">キャンセル</button>
+</dialog>
+</body></html>
