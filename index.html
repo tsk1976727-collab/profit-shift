@@ -1491,4 +1491,11 @@ window.addEventListener('DOMContentLoaded',()=>{if(renderSharedReportFromHash())
   <button id="saveStartBtn">この年月から利用を開始</button>
   <button id="cancelStartBtn" style="margin-top:7px;background:#e9eeea;color:#173f33">キャンセル</button>
 </dialog>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>
 </body></html>
